@@ -12,7 +12,6 @@ namespace MineSweeper
 {
     public partial class Form1 : Form
     {
-        Form1 NewForm = new Form1();
         int gameWidth, gameHeight;
         TextBox h = new TextBox();
         TextBox w = new TextBox();
@@ -33,11 +32,12 @@ namespace MineSweeper
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowOptions();
-           
-            NewForm.Show();
-            this.Dispose(false);
-            GridManager grid = new GridManager();
-            grid.gridGenerator(gameWidth, gameHeight, this);
+            //Form1 NewForm = new Form1();
+
+            //NewForm.Show();
+            //this.Dispose(false);
+            //GridManager grid = new GridManager();
+            //grid.gridGenerator(gameWidth, gameHeight, this);
             MessageBox.Show("GO!");
 
         }
@@ -45,12 +45,15 @@ namespace MineSweeper
         {
             using (Options gameSize = new Options())
             {
+                
                 if (gameSize.ShowDialog() == DialogResult.OK)
                 {
+                    
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
                     h.Text = gameHeight.ToString();
                     w.Text = gameWidth.ToString();
+                    gameSize.gridGenerator(gameWidth, gameHeight, this);
                 }
             }
 
