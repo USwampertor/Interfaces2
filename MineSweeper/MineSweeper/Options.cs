@@ -13,7 +13,6 @@ namespace MineSweeper
     public partial class Options : Form
     {
         public int sWidth, sHeight;
-        
         TextBox tWidth = new TextBox();
         TextBox tHeight = new TextBox();
         public Options()
@@ -29,6 +28,8 @@ namespace MineSweeper
             this.Width = 200;
             this.MaximumSize = new Size(200, 200);
             this.MinimumSize = new Size(150, 150);
+
+            
             Button 
                 wUp = new Button(),
                 hUp = new Button(),
