@@ -27,8 +27,11 @@ namespace MineSweeper
         {
             this.Height = 200;
             this.Width = 200;
+<<<<<<< HEAD
             this.MaximumSize = new Size(200, 200);
             this.MinimumSize = new Size(150, 150);
+=======
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
             Button 
                 wUp = new Button(),
                 hUp = new Button(),
@@ -105,7 +108,11 @@ namespace MineSweeper
         }
         private void WindowResize(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             //MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+=======
+            MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
         }
         private void wUp_Click(object sender, EventArgs e)
         {
@@ -199,7 +206,11 @@ namespace MineSweeper
                 int.Parse(tHeight.Text) < 5||
                 int.Parse(tWidth.Text) < 5)
             {
+<<<<<<< HEAD
                 MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Error);
+=======
+                MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia");
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
             }
             else
             {
@@ -214,5 +225,35 @@ namespace MineSweeper
             this.DialogResult = DialogResult.OK;
             
         }
+<<<<<<< HEAD
+=======
+
+        public void gridGenerator(int xg, int yg, Form form)
+        {
+            int gameWidth, gameHeight;
+            int ButtonWidth = 40;
+            int ButtonHeight = 40;
+            int Distance = 20;
+            int start_x = 20;
+            int start_y = 20;
+
+            for (int x = 0; x < xg; x++)
+            {                                   //Estos 2 fors controlan el tamaño del grid
+                for (int y = 0; y < yg; y++)
+                {
+                    Button tmpButton = new Button();
+                    tmpButton.Top = start_x + (x * ButtonHeight + Distance);
+                    tmpButton.Left = start_y + (y * ButtonWidth + Distance);
+                    tmpButton.Width = ButtonWidth;
+                    tmpButton.Height = ButtonHeight;
+                    tmpButton.Text = "?";
+                    // Possible add Buttonclick event etc..
+                    form.Controls.Add(tmpButton);
+                }
+
+            }
+        }
+
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
     }
 }

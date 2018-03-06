@@ -32,19 +32,41 @@ namespace MineSweeper
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowOptions();
+<<<<<<< HEAD
             
+=======
+            //Form1 NewForm = new Form1();
+
+            //NewForm.Show();
+            //this.Dispose(false);
+            //GridManager grid = new GridManager();
+            //grid.gridGenerator(gameWidth, gameHeight, this);
+            MessageBox.Show("GO!");
+
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
         }
         private void ShowOptions()
         {
             using (Options gameSize = new Options())
             {
+<<<<<<< HEAD
                 if (gameSize.ShowDialog() == DialogResult.OK)
                 {
+=======
+                
+                if (gameSize.ShowDialog() == DialogResult.OK)
+                {
+                    
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
                     h.Text = gameHeight.ToString();
                     w.Text = gameWidth.ToString();
+<<<<<<< HEAD
                     MessageBox.Show("GO!");
+=======
+                    gameSize.gridGenerator(gameWidth, gameHeight, this);
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
                 }
             }
 
@@ -66,6 +88,14 @@ namespace MineSweeper
                 "Ayuda", MessageBoxButtons.OK);
         }
 
+<<<<<<< HEAD
+=======
+        private void buscaminasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("En serio quieres salir?", "Salir", MessageBoxButtons.OKCancel) == DialogResult.OK)

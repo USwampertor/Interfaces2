@@ -53,6 +53,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="GridManager.cs" />
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
     <Compile Include="Options.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +68,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+    <EmbeddedResource Include="GridManager.resx">
+      <DependentUpon>GridManager.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> e66d1b526680641f4d27bde2158a82e8ad4ec8be
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
