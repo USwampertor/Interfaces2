@@ -32,7 +32,7 @@ namespace MineSweeper
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowOptions();
-            MessageBox.Show("GO!");
+            
         }
         private void ShowOptions()
         {
@@ -44,6 +44,7 @@ namespace MineSweeper
                     gameHeight = gameSize.sHeight;
                     h.Text = gameHeight.ToString();
                     w.Text = gameWidth.ToString();
+                    MessageBox.Show("GO!");
                 }
             }
 

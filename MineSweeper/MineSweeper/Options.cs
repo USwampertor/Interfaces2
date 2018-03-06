@@ -27,6 +27,8 @@ namespace MineSweeper
         {
             this.Height = 200;
             this.Width = 200;
+            this.MaximumSize = new Size(200, 200);
+            this.MinimumSize = new Size(150, 150);
             Button 
                 wUp = new Button(),
                 hUp = new Button(),
@@ -103,7 +105,7 @@ namespace MineSweeper
         }
         private void WindowResize(object sender, EventArgs e)
         {
-            MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void wUp_Click(object sender, EventArgs e)
         {
@@ -197,7 +199,7 @@ namespace MineSweeper
                 int.Parse(tHeight.Text) < 5||
                 int.Parse(tWidth.Text) < 5)
             {
-                MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia");
+                MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else
             {
