@@ -13,6 +13,7 @@ namespace MineSweeper
     public partial class Form1 : Form
     {
         int gameWidth, gameHeight;
+        GridManager grid = new GridManager();
         TextBox h = new TextBox();
         TextBox w = new TextBox();
 
@@ -38,23 +39,29 @@ namespace MineSweeper
             //this.Dispose(false);
             //GridManager grid = new GridManager();
             //grid.gridGenerator(gameWidth, gameHeight, this);
-            MessageBox.Show("GO!");
+            //MessageBox.Show("GO!");
 
         }
         private void ShowOptions()
         {
             using (Options gameSize = new Options())
             {
-                
+                int buttonsToButton=0;
                 if (gameSize.ShowDialog() == DialogResult.OK)
                 {
                     
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
+                    buttonsToButton = gameWidth*gameHeight;
                     h.Text = gameHeight.ToString();
                     w.Text = gameWidth.ToString();
                     gameSize.gridGenerator(gameWidth, gameHeight, this);
+                    AutoSize = true;
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                    buttonsToButton++;
+             
                 }
+                //grid.mineGenerator(this, buttonsToButton);
             }
 
         }
