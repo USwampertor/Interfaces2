@@ -14,7 +14,7 @@ namespace MineSweeper
     {
         private Timer time;
         private TimeSpan timeinterval;
-        int gameWidth, gameHeight;
+        int gameWidth, gameHeight, totalMines;
         public Label timeLabel;
 
         public Form1()
@@ -30,7 +30,9 @@ namespace MineSweeper
             time.Interval = 100;
             timeinterval = new TimeSpan();
 
-            timeLabel.TextAlign = ContentAlignment.BottomCenter;
+            timeLabel.BackColor = Color.Black;
+            timeLabel.ForeColor = Color.GreenYellow;
+            timeLabel.TextAlign = ContentAlignment.MiddleCenter;
 
             timeLabel.Location = new Point
                 ((this.Width/2)-(timeLabel.Width/2),(menuStrip1.Height+1));
@@ -71,6 +73,7 @@ namespace MineSweeper
                 {
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
+                    totalMines = gameSize.sMines;
                     time.Start();
                    
                 }
