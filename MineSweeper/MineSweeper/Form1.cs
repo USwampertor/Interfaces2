@@ -13,7 +13,8 @@ namespace MineSweeper
     public partial class Form1 : Form
     {
         int gameWidth, gameHeight;
-        GridManager grid = new GridManager();
+
+        //GridManager grid = new GridManager();
         TextBox h = new TextBox();
         TextBox w = new TextBox();
 
@@ -44,8 +45,11 @@ namespace MineSweeper
         }
         private void ShowOptions()
         {
+
+            int minas = 2;
             using (Options gameSize = new Options())
             {
+                
                 int buttonsToButton=0;
                 if (gameSize.ShowDialog() == DialogResult.OK)
                 {
@@ -55,12 +59,14 @@ namespace MineSweeper
                     buttonsToButton = gameWidth*gameHeight;
                     h.Text = gameHeight.ToString();
                     w.Text = gameWidth.ToString();
-                    gameSize.gridGenerator(gameWidth, gameHeight, this);
+                    //gameSize.gridGenerator(gameWidth, gameHeight, this);
                     AutoSize = true;
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                    buttonsToButton++;
              
                 }
+                //gameSize.resetBoard(this, buttonsToButton);
+                GridManager Game = new GridManager(gameWidth, gameHeight, this, minas);
+                Game.mineGenerator(this, buttonsToButton);
                 //grid.mineGenerator(this, buttonsToButton);
             }
 

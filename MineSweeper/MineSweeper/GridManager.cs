@@ -13,24 +13,60 @@ namespace MineSweeper
 {
     class GridManager 
     {
+        public GridManager(int xg, int yg, Form form, int mines)
+        {
 
-        
+            //int gameWidth, gameHeight;
+            int ButtonWidth = 25;
+            int ButtonHeight = 25;
+            int DistanceY = 5;
+            int DistanceX = 0;
+            int start_x = 1;
+            int start_y = 20;
+            int mina = 0;
 
-        //public void mineGenerator(Form form, int buttons)
-        //{
-        //    foreach (Control x in form.Controls)
-        //    {
-        //        if (x is Button)
-        //        {
-        //            for(int i =0; i< buttons; i++)
-        //            {
-        //                //x.
-        //            }
+            
 
-        //            ((Button)x).Text = "M";
-        //        }
-        //    }
-        //}
+
+            for (int x = 0; x < xg; x++)
+            {                                   //Estos 2 fors controlan el tamaño del grid
+                for (int y = 0; y < yg; y++)
+                {
+                    Cell tmpButton = new Cell();
+
+                    //Top = start_y + (y * ButtonHeight + DistanceY),
+                    //Left = start_x + (x * ButtonWidth + DistanceX),
+                    tmpButton.AutoSize = true;
+                    tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                    //tmpButton.Location = new Point(start_x + tmpButton.Left, start_y + tmpButton.Top);
+                    tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
+
+                    tmpButton.Text = "?";
+                    
+                    form.Controls.Add(tmpButton);
+                    
+                }
+            }
+
+         
+        }
+
+
+        public void mineGenerator(Form form, int buttons)
+        {
+            foreach (Control x in form.Controls)
+            {
+                if (x is Cell)
+                {
+                    for (int i = 0; i < buttons; i++)
+                    {
+                        ((Cell)x).isMine= true;
+                    }
+
+                    //((Button)x).Text = "M";
+                }
+            }
+        }
 
         private int adjMines(int x, int y, int gridX, int gridY)
         {

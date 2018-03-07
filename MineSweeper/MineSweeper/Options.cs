@@ -145,6 +145,20 @@ namespace MineSweeper
             }
             tHeight.Text = up.ToString();
         }
+
+        //public void resetBoard(Form form, int buttons)
+        //{
+        //    foreach (Cell x in form.Controls)
+        //    {
+        //        if (x is Cell)
+        //        {
+        //            for (int i = 0; i < buttons; i++)
+        //            {
+        //                form.Controls.Remove(((Cell)x));
+        //            }
+        //        }
+        //    }
+        //}
         private void wDown_Click(object sender, EventArgs e)
         {
             int down = 5;
@@ -213,37 +227,7 @@ namespace MineSweeper
             
         }
 
-        public void gridGenerator(int xg, int yg, Form form)
-        {
-            //int gameWidth, gameHeight;
-            int ButtonWidth = 40;
-            int ButtonHeight = 40;
-            int DistanceY= 5;
-            int DistanceX = 0;
-            int start_x = 0;
-            int start_y = 20;
-
-            for (int x = 0; x < xg; x++)
-            {                                   //Estos 2 fors controlan el tamaño del grid
-                for (int y = 0; y < yg; y++)
-                {
-                    Cell tmpButton = new Cell();
-                    //tmpButton.Width = ButtonWidth;
-                    //tmpButton.Height = ButtonHeight;
-
-                    tmpButton.Top = start_y + (y * ButtonHeight+DistanceY);
-                    tmpButton.Left = start_x + (x * ButtonWidth+DistanceX);
-                    tmpButton.AutoSize = true;
-                    tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                    tmpButton.Text = "?";
-                    tmpButton.BackColor = Color.Red;
-                    form.Controls.Add(tmpButton);
-
-                    
-                }
-            }
-            
-        }
+        
 
     }
 }

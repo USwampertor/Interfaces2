@@ -8,11 +8,16 @@ using System.Windows.Forms;
 
 namespace MineSweeper
 {
-    class Cell: Button
+     class Cell: Button
     {
-        bool isMine = false;
-        int minasAdj;
+        public int posX, posY;
+        public bool isMine, revealed, flagged;
 
-        
+        public Cell()
+        {
+            this.Width = posX;
+            this.Height = posY;
+        }
+
     }
 }
