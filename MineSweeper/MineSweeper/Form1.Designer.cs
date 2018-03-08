@@ -57,30 +57,18 @@
             this.buscaminasToolStripMenuItem.Name = "buscaminasToolStripMenuItem";
             this.buscaminasToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.buscaminasToolStripMenuItem.Text = "Buscaminas";
-<<<<<<< HEAD
-            this.buscaminasToolStripMenuItem.Click += new System.EventHandler(this.buscaminasToolStripMenuItem_Click);
-=======
->>>>>>> remotes/origin/Development
             // 
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-<<<<<<< HEAD
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-=======
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
->>>>>>> remotes/origin/Development
             this.nuevoToolStripMenuItem.Text = "Nuevo...";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-<<<<<<< HEAD
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-=======
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
->>>>>>> remotes/origin/Development
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -96,22 +84,14 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-<<<<<<< HEAD
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-=======
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
->>>>>>> remotes/origin/Development
             this.acercaDeToolStripMenuItem.Text = "Ayuda";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
             // créditosToolStripMenuItem
             // 
             this.créditosToolStripMenuItem.Name = "créditosToolStripMenuItem";
-<<<<<<< HEAD
             this.créditosToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-=======
-            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
->>>>>>> remotes/origin/Development
             this.créditosToolStripMenuItem.Text = "Acerca de...";
             this.créditosToolStripMenuItem.Click += new System.EventHandler(this.créditosToolStripMenuItem_Click);
             // 
@@ -143,4 +123,3 @@
         private System.Windows.Forms.ToolStripMenuItem créditosToolStripMenuItem;
     }
 }
-

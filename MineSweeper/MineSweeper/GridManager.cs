@@ -13,35 +13,32 @@ namespace MineSweeper
 {
     class GridManager 
     {
+        bool gameStarted = false;
+        int ButtonWidth = 25;
+        int ButtonHeight = 25;
+        int DistanceY = 5;
+        int DistanceX = 0;
+        int start_x = 0;
+        int start_y = 51;
+        int mina = 0, id = 0;
+
         public GridManager(int xg, int yg, Form form, int mines)
         {
-
-            //int gameWidth, gameHeight;
-            int ButtonWidth = 25;
-            int ButtonHeight = 25;
-            int DistanceY = 5;
-            int DistanceX = 0;
-            int start_x = 0;
-            int start_y = 27;
-            int mina = 0, id=0;
-
-            
-
-
             for (int x = 0; x < xg; x++)
             {                                   //Estos 2 fors controlan el tamaño del grid
                 for (int y = 0; y < yg; y++)
                 {
                     Cell tmpButton = new Cell();
-
+                    id++;
                     //Top = start_y + (y * ButtonHeight + DistanceY),
                     //Left = start_x + (x * ButtonWidth + DistanceX),
                     tmpButton.AutoSize = true;
                     tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
-                    tmpButton.Click += new EventHandler(this.button_Click);
-                    tmpButton.Click += new EventHandler(this.button_Click);
+                    tmpButton.MouseUp += new MouseEventHandler(button1_MouseUp);
+                    //tmpButton.Click += new EventHandler(button_Left_Click);
                     tmpButton.Text = "?";
+                    tmpButton.id = id;
                     
                     form.Controls.Add(tmpButton);
                     
@@ -63,7 +60,6 @@ namespace MineSweeper
                         ((Cell)x).isMine= true;
                     }
 
-                   
                 }
             }
         }
@@ -93,13 +89,42 @@ namespace MineSweeper
             return mineCount;
         }
 
-        
 
-        void button_Click(object sender, System.EventArgs e)
+        private void button1_MouseUp(object sender, MouseEventArgs e)
         {
+            var btn = ((Cell)sender);
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    MessageBox.Show("ID: " + btn.id);
+                    if(gameStarted)
+                    {
+                        //Revelar botones normal
+                    }
+                    else
+                    {
+                        //GenerarMinas
+                    }
+                    break;
 
+                case MouseButtons.Right:
+                    if (!btn.isFlagged)
+                    {
+                        btn.BackgroundImage = Image.FromFile(@"C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\flag.png");
+                        btn.BackgroundImageLayout = ImageLayout.Stretch;
+                        btn.Text = " ";
+                        btn.isFlagged = true;
+                    }
+                    else
+                    {
+                        btn.BackgroundImage = null;
+                        btn.Text = "?";
+                        btn.isFlagged = false;
+                    }
+                    break;
+
+            }
         }
-
 
         //public void FirstMove(int x, int y, Random rand)
         //{

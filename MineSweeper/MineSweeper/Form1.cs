@@ -12,14 +12,10 @@ namespace MineSweeper
 {
     public partial class Form1 : Form
     {
-        int gameWidth, gameHeight;
-<<<<<<< HEAD
-
-        //GridManager grid = new GridManager();
-=======
->>>>>>> remotes/origin/Development
-        TextBox h = new TextBox();
-        TextBox w = new TextBox();
+        private Timer time;
+        private TimeSpan timeinterval;
+        int gameWidth, gameHeight, totalMines;
+        public Label timeLabel;
 
         public Form1()
         {
@@ -29,65 +25,63 @@ namespace MineSweeper
         private void InitializeDynamicCompontent()
         {
             ///esto es de mientras
-            w.Location = new Point(this.Width / 3, 100);
-            h.Location = new Point(2 * this.Width / 3, 100);
+            time = new Timer();
+            timeLabel = new Label();
+            time.Interval = 100;
+            timeinterval = new TimeSpan();
+
+            timeLabel.BackColor = Color.Black;
+            timeLabel.ForeColor = Color.GreenYellow;
+            timeLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            timeLabel.Location = new Point
+                ((this.Width / 2) - (timeLabel.Width / 2), (menuStrip1.Height + 1));
+
+            time.Tick += new EventHandler(time_Tick);
+            this.FormClosing += new FormClosingEventHandler(Closing);
+
+            Controls.Add(timeLabel);
+        }
+
+        void time_Tick(object sender, EventArgs e)
+        {
+            timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
+            timeLabel.Text = (timeinterval.Minutes + ":" + timeinterval.Seconds);
+        }
+
+        new public void Closing(object sender, FormClosingEventArgs e)
+        {
+
+            if (MessageBox.Show("Estas seguro de que quieres salir?", "Warning", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+
+
 
         }
-        
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowOptions();
-<<<<<<< HEAD
-            //Form1 NewForm = new Form1();
-
-            //NewForm.Show();
-            //this.Dispose(false);
-            //GridManager grid = new GridManager();
-            //grid.gridGenerator(gameWidth, gameHeight, this);
-            //MessageBox.Show("GO!");
 
         }
         private void ShowOptions()
         {
-
-            int minas = 2;
             using (Options gameSize = new Options())
             {
-                
-                int buttonsToButton=0;
+                int buttonsToButton;
+
                 if (gameSize.ShowDialog() == DialogResult.OK)
                 {
-                    
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
-                    buttonsToButton = gameWidth*gameHeight;
-                    h.Text = gameHeight.ToString();
-                    w.Text = gameWidth.ToString();
-                    //gameSize.gridGenerator(gameWidth, gameHeight, this);
+                    buttonsToButton = gameWidth * gameHeight;
+                    totalMines = gameSize.sMines;
+                    time.Start();
+                    GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines);
                     AutoSize = true;
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
-             
                 }
-                gameSize.resetBoard(this, buttonsToButton);
-                GridManager Game = new GridManager(gameWidth, gameHeight, this, minas);
-                Game.mineGenerator(this, buttonsToButton);
-                //grid.mineGenerator(this, buttonsToButton);
-=======
-            
-        }
-        private void ShowOptions()
-        {
-            using (Options gameSize = new Options())
-            {
-                if (gameSize.ShowDialog() == DialogResult.OK)
-                {
-                    gameWidth = gameSize.sWidth;
-                    gameHeight = gameSize.sHeight;
-                    h.Text = gameHeight.ToString();
-                    w.Text = gameWidth.ToString();
-                    MessageBox.Show("GO!");
-                }
->>>>>>> remotes/origin/Development
             }
 
         }
@@ -98,7 +92,7 @@ namespace MineSweeper
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("There's no help here Boi", "Ayuda",MessageBoxButtons.OK);
+            MessageBox.Show("There's no help here Boi", "Ayuda", MessageBoxButtons.OK);
         }
 
         private void créditosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,21 +102,9 @@ namespace MineSweeper
                 "Ayuda", MessageBoxButtons.OK);
         }
 
-<<<<<<< HEAD
-        private void buscaminasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-=======
->>>>>>> remotes/origin/Development
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("En serio quieres salir?", "Salir", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                Application.Exit();
-            }
-            
+            Application.Exit();
         }
     }
 }

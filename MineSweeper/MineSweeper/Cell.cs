@@ -11,10 +11,16 @@ namespace MineSweeper
      class Cell: Button
     {
         public int id, adjMine;
-        public bool isMine, revealed, flagged;
+        public bool isMine, revealed, isFlagged;
 
         public Cell()
         {
+        }
+
+        public int getID()
+        {
+            return id;
+
         }
 
     }
