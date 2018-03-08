@@ -38,7 +38,6 @@ namespace MineSweeper
                     //Left = start_x + (x * ButtonWidth + DistanceX),
                     tmpButton.AutoSize = true;
                     tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                    //tmpButton.Location = new Point(start_x + tmpButton.Left, start_y + tmpButton.Top);
                     tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
 
                     tmpButton.Text = "?";
