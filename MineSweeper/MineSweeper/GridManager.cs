@@ -15,6 +15,7 @@ namespace MineSweeper
     {
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"Explosion.wav");
         Form tableroporquemevalemadreelingles;
+        Button Face;
         bool gameStarted, gameLost, gameWon;
         int ButtonWidth = 25;
         int ButtonHeight = 25;
@@ -26,13 +27,15 @@ namespace MineSweeper
         int cellCount;
         int mineCount;
         int mineTotal;
+        int flagCount;
+        int columnCount;
+        int fileCount;
 
-        public GridManager(int xg, int yg, Form form, int mines)
+        public GridManager(int xg, int yg, Form form, int mines, Button face)
         {
             tableroporquemevalemadreelingles = form;
-            gameStarted = false;
-            mineCount = 0;
-            mineTotal = mines;
+            Face = face;
+            resetBoard(mines);
             for (int y = 0; y < yg; y++)
             {                                   //Estos 2 fors controlan el tamaño del grid
                 for (int x = 0; x < xg; x++)
@@ -53,6 +56,8 @@ namespace MineSweeper
                     
                 }
             }
+            fileCount = yg;
+            columnCount = xg;
             cellCount = xg * yg;
          
         }
@@ -119,21 +124,30 @@ namespace MineSweeper
                     {
                         //Revelar botones normal
                         revealCells(btn);
-                        foreach (Control x in tableroporquemevalemadreelingles.Controls)
+                        if (gameLost)
                         {
-                            if (x.Name == "Face")
+                            foreach (Control x in tableroporquemevalemadreelingles.Controls)
                             {
-                                ((Button)x).BackgroundImage = Image.FromFile(@"Happy.png");
-                                ((Button)x).BackgroundImageLayout = ImageLayout.Stretch;
+                                if (x is Cell)
+                                {
+                                    //for (int i = 0; i < buttons; i++)
+                                    //{
+                                    revealCells((Cell)x);
+                                    //}
+                                }
                             }
+                            Face.BackgroundImage = Image.FromFile(@"Ded.png");
+                            Face.BackgroundImageLayout = ImageLayout.Stretch;
+                            MessageBox.Show("Perdiste alv.");
+                            clearBoard();
                         }
-
                     }
                     else
                     {
                         //GenerarMinas
                         mineGenerator(cellCount);
                         gameStarted = true;
+                        revealCells(btn);
                     }
                     break;
 
@@ -144,12 +158,25 @@ namespace MineSweeper
                         btn.BackgroundImageLayout = ImageLayout.Stretch;
                         btn.Text = " ";
                         btn.isFlagged = true;
+                        if (btn.isFlagged && btn.isMine)
+                        {
+                            flagCount++;
+                            if (flagCount == mineCount)
+                            {
+                                Face.BackgroundImage = Image.FromFile(@"Victory.png");
+                                Face.BackgroundImageLayout = ImageLayout.Stretch;
+                                MessageBox.Show("Ganaste.");
+                                clearBoard();
+                            }
+                        }
                     }
                     else
                     {
                         if (btn.isRevealed)
                         {
                             revealCells(btn);
+                           
+
                         }
                         else
                         {
@@ -165,35 +192,22 @@ namespace MineSweeper
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
-            foreach(Control x in tableroporquemevalemadreelingles.Controls)
-            {
-                if(x.Name == "Face")
-                {
-                    ((Button)x).BackgroundImage = Image.FromFile(@"worried.png");
-                    ((Button)x).BackgroundImageLayout = ImageLayout.Stretch;
-                }
-            }
+                    Face.BackgroundImage = Image.FromFile(@"worried.png");
+                    Face.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-            public void revealCells(Cell btn)
+        public void revealCells(Cell btn)
         {
-            if (btn.isMine)
+            if (btn.isMine && !btn.isRevealed)
             {
                 btn.BackgroundImage = Image.FromFile(@"Mine.png");
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
                 btn.Text = "  ";
                 player.Play();
-                //btn.BackColor = Color.Red;
-                foreach(Control x in tableroporquemevalemadreelingles.Controls)
-                {
-                    if(x is Cell)
-                    {
-                        revealCells((Cell)x);
-                    }
-                }
                 gameLost = true;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
+
             }
             else
             {
@@ -201,7 +215,33 @@ namespace MineSweeper
                 btn.ForeColor = Color.Purple;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
+                Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                Face.BackgroundImageLayout = ImageLayout.Stretch;
             }
+        }
+        public void clearBoard()
+        {
+            while (cellCount > 0)
+            {
+                foreach (Control x in tableroporquemevalemadreelingles.Controls)
+                {
+                    if (x is Cell)
+                    {
+                        tableroporquemevalemadreelingles.Controls.Remove((Cell)x);
+                        cellCount--;
+                    }
+                }
+            }
+        }
+
+        public void resetBoard(int mines)
+        {
+            gameStarted = false;
+            gameLost = false;
+            gameWon = false;
+            mineCount = 0;
+            mineTotal = mines;
+            flagCount = 0;
         }
 
         public void CascadaMeValeVergaEstaEnEspanolFuckGringos(Cell btn)

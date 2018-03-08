@@ -79,7 +79,7 @@ namespace MineSweeper
                     buttonsToButton = gameWidth * gameHeight;
                     totalMines = gameSize.sMines;
                     time.Start();
-                    GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines);
+                    GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
                     AutoSize = true;
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     //grid.mineGenerator(this, buttonsToButton);
