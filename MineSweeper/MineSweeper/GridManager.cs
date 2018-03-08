@@ -119,6 +119,14 @@ namespace MineSweeper
                     {
                         //Revelar botones normal
                         revealCells(btn);
+                        foreach (Control x in tableroporquemevalemadreelingles.Controls)
+                        {
+                            if (x.Name == "Face")
+                            {
+                                ((Button)x).BackgroundImage = Image.FromFile(@"Happy.png");
+                                ((Button)x).BackgroundImageLayout = ImageLayout.Stretch;
+                            }
+                        }
 
                     }
                     else
@@ -157,7 +165,14 @@ namespace MineSweeper
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
-
+            foreach(Control x in tableroporquemevalemadreelingles.Controls)
+            {
+                if(x.Name == "Face")
+                {
+                    ((Button)x).BackgroundImage = Image.FromFile(@"worried.png");
+                    ((Button)x).BackgroundImageLayout = ImageLayout.Stretch;
+                }
+            }
         }
 
             public void revealCells(Cell btn)
