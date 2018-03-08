@@ -102,8 +102,10 @@ namespace MineSweeper
                         //Revelar botones normal
                         if(btn.isMine)
                         {
-                            btn.Text = "M";
-                            btn.BackColor = Color.Red;
+                            btn.BackgroundImage = Image.FromFile(@"Mine.png");
+                            btn.BackgroundImageLayout = ImageLayout.Stretch;
+                            btn.Text = "  ";
+                            //btn.BackColor = Color.Red;
                         }
                     }
                     else
