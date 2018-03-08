@@ -146,19 +146,16 @@ namespace MineSweeper
             tHeight.Text = up.ToString();
         }
 
-        //public void resetBoard(Form form, int buttons)
-        //{
-        //    foreach (Cell x in form.Controls)
-        //    {
-        //        if (x is Cell)
-        //        {
-        //            for (int i = 0; i < buttons; i++)
-        //            {
-        //                form.Controls.Remove(((Cell)x));
-        //            }
-        //        }
-        //    }
-        //}
+        public void resetBoard(Form form, int buttons)
+        {
+            foreach (Control x in form.Controls)
+            {
+                if (x is Cell)
+                {
+                    form.Controls.Remove(((Cell)x));
+                }
+            }
+        }
         private void wDown_Click(object sender, EventArgs e)
         {
             int down = 5;

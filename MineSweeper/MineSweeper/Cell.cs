@@ -10,14 +10,15 @@ namespace MineSweeper
 {
      class Cell: Button
     {
-        public int posX, posY;
+        public int id, adjMine;
         public bool isMine, revealed, flagged;
 
         public Cell()
         {
-            this.Width = posX;
-            this.Height = posY;
         }
 
     }
+
+
+   
 }

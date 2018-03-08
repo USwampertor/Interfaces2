@@ -64,7 +64,7 @@ namespace MineSweeper
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
              
                 }
-                //gameSize.resetBoard(this, buttonsToButton);
+                gameSize.resetBoard(this, buttonsToButton);
                 GridManager Game = new GridManager(gameWidth, gameHeight, this, minas);
                 Game.mineGenerator(this, buttonsToButton);
                 //grid.mineGenerator(this, buttonsToButton);
