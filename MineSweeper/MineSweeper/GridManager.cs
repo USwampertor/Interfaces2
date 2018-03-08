@@ -13,7 +13,8 @@ namespace MineSweeper
 {
     class GridManager 
     {
-        bool gameStarted = false;
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"Explosion.wav");
+        bool gameStarted = false, gameLost = false, gameWon;
         int ButtonWidth = 25;
         int ButtonHeight = 25;
         int DistanceY = 5;
@@ -30,8 +31,7 @@ namespace MineSweeper
                 {
                     Cell tmpButton = new Cell();
                     id++;
-                    //Top = start_y + (y * ButtonHeight + DistanceY),
-                    //Left = start_x + (x * ButtonWidth + DistanceX),
+
                     tmpButton.AutoSize = true;
                     tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
@@ -96,17 +96,12 @@ namespace MineSweeper
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    MessageBox.Show("ID: " + btn.id);
+                    //MessageBox.Show("ID: " + btn.id);
                     if(!gameStarted)
                     {
                         //Revelar botones normal
-                        if(btn.isMine)
-                        {
-                            btn.BackgroundImage = Image.FromFile(@"Mine.png");
-                            btn.BackgroundImageLayout = ImageLayout.Stretch;
-                            btn.Text = "  ";
-                            //btn.BackColor = Color.Red;
-                        }
+                        revealCells(btn);
+
                     }
                     else
                     {
@@ -115,7 +110,7 @@ namespace MineSweeper
                     break;
 
                 case MouseButtons.Right:
-                    if (!btn.isFlagged)
+                    if (!btn.isFlagged && !btn.isRevealed)
                     {
                         btn.BackgroundImage = Image.FromFile(@"flag.png");
                         btn.BackgroundImageLayout = ImageLayout.Stretch;
@@ -124,14 +119,45 @@ namespace MineSweeper
                     }
                     else
                     {
-                        btn.BackgroundImage = null;
-                        btn.Text = "?";
-                        btn.isFlagged = false;
+                        if (btn.isRevealed)
+                        {
+                            revealCells(btn);
+                        }
+                        else
+                        {
+                            btn.BackgroundImage = null;
+                            btn.Text = "?";
+                            btn.isFlagged = false;
+                        }
                     }
                     break;
 
             }
         }
+
+        public void revealCells(Cell btn)
+        {
+            if (btn.isMine)
+            {
+                btn.BackgroundImage = Image.FromFile(@"Mine.png");
+                btn.BackgroundImageLayout = ImageLayout.Stretch;
+                btn.Text = "  ";
+                player.Play();
+                //btn.BackColor = Color.Red;
+
+                gameLost = true;
+                btn.isFlagged = false;
+                btn.isRevealed = true;
+            }
+            else
+            {
+                btn.Text = "3";
+                btn.ForeColor = Color.Purple;
+                btn.isFlagged = false;
+                btn.isRevealed = true;
+            }
+        }
+
 
         //public void FirstMove(int x, int y, Random rand)
         //{
