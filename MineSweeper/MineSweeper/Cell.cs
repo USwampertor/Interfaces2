@@ -15,6 +15,7 @@ namespace MineSweeper
 
         public Cell()
         {
+            isMine = false;
         }
 
         public int getID()
@@ -24,7 +25,4 @@ namespace MineSweeper
         }
 
     }
-
-
-   
 }

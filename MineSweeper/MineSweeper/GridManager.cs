@@ -11,10 +11,11 @@ using System.Windows.Forms;
 
 namespace MineSweeper
 {
-    class GridManager 
+    class GridManager
     {
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"Explosion.wav");
-        bool gameStarted = false, gameLost = false, gameWon;
+        Form tableroporquemevalemadreelingles;
+        bool gameStarted, gameLost, gameWon;
         int ButtonWidth = 25;
         int ButtonHeight = 25;
         int DistanceY = 5;
@@ -22,12 +23,19 @@ namespace MineSweeper
         int start_x = 0;
         int start_y = 51;
         int mina = 0, id = 0;
+        int cellCount;
+        int mineCount;
+        int mineTotal;
 
         public GridManager(int xg, int yg, Form form, int mines)
         {
-            for (int x = 0; x < xg; x++)
+            tableroporquemevalemadreelingles = form;
+            gameStarted = false;
+            mineCount = 0;
+            mineTotal = mines;
+            for (int y = 0; y < yg; y++)
             {                                   //Estos 2 fors controlan el tamaño del grid
-                for (int y = 0; y < yg; y++)
+                for (int x = 0; x < xg; x++)
                 {
                     Cell tmpButton = new Cell();
                     id++;
@@ -44,22 +52,31 @@ namespace MineSweeper
                     
                 }
             }
-
+            cellCount = xg * yg;
          
         }
 
 
-        public void mineGenerator(Form form, int buttons)
+        public void mineGenerator(int buttons)
         {
-            foreach (Control x in form.Controls)
+            Random rand = new Random();
+            int esminaalv;
+            foreach (Control x in tableroporquemevalemadreelingles.Controls)
             {
+                esminaalv = rand.Next(1, 6) % 2;
                 if (x is Cell)
                 {
-                    for (int i = 0; i < buttons; i++)
+                    //for (int i = 0; i < buttons; i++)
+                    //{
+                    if (mineCount < mineTotal)
                     {
-                        ((Cell)x).isMine= true;
+                        if (esminaalv == 0)
+                        {
+                            ((Cell)x).isMine = true;
+                            mineCount++;
+                        }
                     }
-
+                    //}
                 }
             }
         }
@@ -97,7 +114,7 @@ namespace MineSweeper
             {
                 case MouseButtons.Left:
                     //MessageBox.Show("ID: " + btn.id);
-                    if(!gameStarted)
+                    if (gameStarted)
                     {
                         //Revelar botones normal
                         revealCells(btn);
@@ -106,6 +123,8 @@ namespace MineSweeper
                     else
                     {
                         //GenerarMinas
+                        mineGenerator(cellCount);
+                        gameStarted = true;
                     }
                     break;
 
@@ -144,7 +163,13 @@ namespace MineSweeper
                 btn.Text = "  ";
                 player.Play();
                 //btn.BackColor = Color.Red;
-
+                foreach(Control x in tableroporquemevalemadreelingles.Controls)
+                {
+                    if(x is Cell)
+                    {
+                        revealCells((Cell)x);
+                    }
+                }
                 gameLost = true;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
@@ -158,6 +183,10 @@ namespace MineSweeper
             }
         }
 
+        public void CascadaMeValeVergaEstaEnEspanolFuckGringos(Cell btn)
+        {
+
+        }
 
         //public void FirstMove(int x, int y, Random rand)
         //{
