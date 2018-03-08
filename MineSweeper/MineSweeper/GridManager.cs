@@ -26,15 +26,14 @@ namespace MineSweeper
         int cellCount;
         int mineCount;
         int mineTotal;
+        int flagCount;
         int columnCount;
         int fileCount;
 
         public GridManager(int xg, int yg, Form form, int mines)
         {
             tableroporquemevalemadreelingles = form;
-            gameStarted = false;
-            mineCount = 0;
-            mineTotal = mines;
+            resetBoard(mines);
             for (int y = 0; y < yg; y++)
             {                                   //Estos 2 fors controlan el tamaño del grid
                 for (int x = 0; x < xg; x++)
@@ -121,7 +120,7 @@ namespace MineSweeper
                     {
                         //Revelar botones normal
                         revealCells(btn);
-                        if(gameLost)
+                        if (gameLost)
                         {
                             foreach (Control x in tableroporquemevalemadreelingles.Controls)
                             {
@@ -153,6 +152,15 @@ namespace MineSweeper
                         btn.BackgroundImageLayout = ImageLayout.Stretch;
                         btn.Text = " ";
                         btn.isFlagged = true;
+                        if (btn.isFlagged && btn.isMine)
+                        {
+                            flagCount++;
+                            if (flagCount == mineCount)
+                            {
+                                MessageBox.Show("Ganaste.");
+                                clearBoard();
+                            }
+                        }
                     }
                     else
                     {
@@ -206,6 +214,16 @@ namespace MineSweeper
                     }
                 }
             }
+        }
+
+        public void resetBoard(int mines)
+        {
+            gameStarted = false;
+            gameLost = false;
+            gameWon = false;
+            mineCount = 0;
+            mineTotal = mines;
+            flagCount = 0;
         }
 
         public void CascadaMeValeVergaEstaEnEspanolFuckGringos(Cell btn)
