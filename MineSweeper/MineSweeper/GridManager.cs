@@ -21,7 +21,7 @@ namespace MineSweeper
         int DistanceY = 5;
         int DistanceX = 0;
         int start_x = 0;
-        int start_y = 51;
+        int start_y = 74;
         int mina = 0, id = 0;
         int cellCount;
         int mineCount;
@@ -44,6 +44,7 @@ namespace MineSweeper
                     tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
                     tmpButton.MouseUp += new MouseEventHandler(button1_MouseUp);
+                    tmpButton.MouseDown += new MouseEventHandler(button1_MouseDown);
                     //tmpButton.Click += new EventHandler(button_Left_Click);
                     tmpButton.Text = "?";
                     tmpButton.id = id;
@@ -154,7 +155,12 @@ namespace MineSweeper
             }
         }
 
-        public void revealCells(Cell btn)
+        private void button1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+            public void revealCells(Cell btn)
         {
             if (btn.isMine)
             {

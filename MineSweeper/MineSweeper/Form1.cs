@@ -21,6 +21,7 @@ namespace MineSweeper
         {
             InitializeComponent();
             InitializeDynamicCompontent();
+            button1.Enabled = false;
         }
         private void InitializeDynamicCompontent()
         {
@@ -94,6 +95,11 @@ namespace MineSweeper
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("There's no help here Boi", "Ayuda", MessageBoxButtons.OK);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void créditosToolStripMenuItem_Click(object sender, EventArgs e)
