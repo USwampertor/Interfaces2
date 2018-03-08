@@ -34,7 +34,10 @@ namespace MineSweeper
         public GridManager(int xg, int yg, Form form, int mines, Button face)
         {
             tableroporquemevalemadreelingles = form;
+<<<<<<< HEAD
             Face = face;
+=======
+>>>>>>> 7d59dcc0b9de76dca56bb144653891cb97bb89b5
             resetBoard(mines);
             for (int y = 0; y < yg; y++)
             {                                   //Estos 2 fors controlan el tamaño del grid
@@ -59,7 +62,6 @@ namespace MineSweeper
             fileCount = yg;
             columnCount = xg;
             cellCount = xg * yg;
-         
         }
 
 
@@ -136,8 +138,11 @@ namespace MineSweeper
                                     //}
                                 }
                             }
+<<<<<<< HEAD
                             Face.BackgroundImage = Image.FromFile(@"Ded.png");
                             Face.BackgroundImageLayout = ImageLayout.Stretch;
+=======
+>>>>>>> 7d59dcc0b9de76dca56bb144653891cb97bb89b5
                             MessageBox.Show("Perdiste alv.");
                             clearBoard();
                         }
@@ -163,8 +168,11 @@ namespace MineSweeper
                             flagCount++;
                             if (flagCount == mineCount)
                             {
+<<<<<<< HEAD
                                 Face.BackgroundImage = Image.FromFile(@"Victory.png");
                                 Face.BackgroundImageLayout = ImageLayout.Stretch;
+=======
+>>>>>>> 7d59dcc0b9de76dca56bb144653891cb97bb89b5
                                 MessageBox.Show("Ganaste.");
                                 clearBoard();
                             }
@@ -186,7 +194,6 @@ namespace MineSweeper
                         }
                     }
                     break;
-
             }
         }
 
@@ -204,6 +211,10 @@ namespace MineSweeper
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
                 btn.Text = "  ";
                 player.Play();
+<<<<<<< HEAD
+=======
+                //btn.BackColor = Color.Red;
+>>>>>>> 7d59dcc0b9de76dca56bb144653891cb97bb89b5
                 gameLost = true;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
@@ -234,6 +245,24 @@ namespace MineSweeper
             }
         }
 
+<<<<<<< HEAD
+=======
+        public void clearBoard()
+        {
+            while (cellCount > 0)
+            {
+                foreach (Control x in tableroporquemevalemadreelingles.Controls)
+                {
+                    if (x is Cell)
+                    {
+                        tableroporquemevalemadreelingles.Controls.Remove((Cell)x);
+                        cellCount--;
+                    }
+                }
+            }
+        }
+
+>>>>>>> 7d59dcc0b9de76dca56bb144653891cb97bb89b5
         public void resetBoard(int mines)
         {
             gameStarted = false;
