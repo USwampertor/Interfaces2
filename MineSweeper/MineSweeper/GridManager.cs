@@ -140,6 +140,12 @@ namespace MineSweeper
                     {
                         //GenerarMinas
                         mineGenerator(cellCount);
+                        //while(btn.isMine)
+                        //{
+                        //    mineGenerator(cellCount);
+                        //}
+                        //btn.cascade(tableroporquemevalemadreelingles, columnCount);
+                        CascadaMeValeVergaEstaEnEspanolFuckGringos();
                         gameStarted = true;
                         revealCells(btn);
                     }
@@ -192,9 +198,17 @@ namespace MineSweeper
                 btn.isFlagged = false;
                 btn.isRevealed = true;
             }
-            else
+            if(!btn.isBlank && !btn.isMine)
             {
-                btn.Text = "3";
+                int adjacentMines = btn.adjMine;
+                btn.Text = adjacentMines.ToString();
+                btn.ForeColor = Color.Purple;
+                btn.isFlagged = false;
+                btn.isRevealed = true;
+            }
+            if(btn.isBlank)
+            {
+                btn.Text = " ";
                 btn.ForeColor = Color.Purple;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
@@ -226,9 +240,84 @@ namespace MineSweeper
             flagCount = 0;
         }
 
-        public void CascadaMeValeVergaEstaEnEspanolFuckGringos(Cell btn)
+        public void CascadaMeValeVergaEstaEnEspanolFuckGringos()
         {
-
+            foreach(Control y in tableroporquemevalemadreelingles.Controls)
+            {
+                if(y is Cell)
+                {
+                    foreach (Control x in tableroporquemevalemadreelingles.Controls)
+                    {
+                        if (x is Cell)
+                        {
+                            if ((((Cell)y).id - columnCount - 1) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id - columnCount) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id - columnCount + 1) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id - 1) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id + 1) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id + columnCount - 1) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id + columnCount) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                            if ((((Cell)y).id + columnCount + 1) == ((Cell)x).id)
+                            {
+                                if (((Cell)x).isMine)
+                                {
+                                    ((Cell)y).adjMine++;
+                                }
+                            }
+                        }
+                        if (((Cell)y).adjMine == 0)
+                        {
+                            ((Cell)y).isBlank = true;
+                        }
+                        else
+                        {
+                            ((Cell)y).isBlank = false;
+                        }
+                    }
+                }
+            }
         }
 
         //public void FirstMove(int x, int y, Random rand)
