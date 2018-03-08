@@ -97,9 +97,14 @@ namespace MineSweeper
             {
                 case MouseButtons.Left:
                     MessageBox.Show("ID: " + btn.id);
-                    if(gameStarted)
+                    if(!gameStarted)
                     {
                         //Revelar botones normal
+                        if(btn.isMine)
+                        {
+                            btn.Text = "M";
+                            btn.BackColor = Color.Red;
+                        }
                     }
                     else
                     {
