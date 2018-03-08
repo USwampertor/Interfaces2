@@ -13,8 +13,11 @@ namespace MineSweeper
     public partial class Form1 : Form
     {
         int gameWidth, gameHeight;
+<<<<<<< HEAD
 
         //GridManager grid = new GridManager();
+=======
+>>>>>>> remotes/origin/Development
         TextBox h = new TextBox();
         TextBox w = new TextBox();
 
@@ -34,6 +37,7 @@ namespace MineSweeper
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowOptions();
+<<<<<<< HEAD
             //Form1 NewForm = new Form1();
 
             //NewForm.Show();
@@ -68,6 +72,22 @@ namespace MineSweeper
                 GridManager Game = new GridManager(gameWidth, gameHeight, this, minas);
                 Game.mineGenerator(this, buttonsToButton);
                 //grid.mineGenerator(this, buttonsToButton);
+=======
+            
+        }
+        private void ShowOptions()
+        {
+            using (Options gameSize = new Options())
+            {
+                if (gameSize.ShowDialog() == DialogResult.OK)
+                {
+                    gameWidth = gameSize.sWidth;
+                    gameHeight = gameSize.sHeight;
+                    h.Text = gameHeight.ToString();
+                    w.Text = gameWidth.ToString();
+                    MessageBox.Show("GO!");
+                }
+>>>>>>> remotes/origin/Development
             }
 
         }
@@ -88,11 +108,14 @@ namespace MineSweeper
                 "Ayuda", MessageBoxButtons.OK);
         }
 
+<<<<<<< HEAD
         private void buscaminasToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
+=======
+>>>>>>> remotes/origin/Development
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("En serio quieres salir?", "Salir", MessageBoxButtons.OKCancel) == DialogResult.OK)

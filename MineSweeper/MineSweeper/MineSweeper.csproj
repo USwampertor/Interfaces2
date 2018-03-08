@@ -46,9 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Cell.cs">
       <SubType>Component</SubType>
     </Compile>
+=======
+>>>>>>> remotes/origin/Development
     <Compile Include="Database.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -56,7 +59,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="GridManager.cs" />
+=======
+>>>>>>> remotes/origin/Development
     <Compile Include="Options.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,9 +74,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="GridManager.resx">
       <DependentUpon>GridManager.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> remotes/origin/Development
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>

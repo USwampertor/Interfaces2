@@ -27,6 +27,11 @@ namespace MineSweeper
         {
             this.Height = 200;
             this.Width = 200;
+<<<<<<< HEAD
+=======
+            this.MaximumSize = new Size(200, 200);
+            this.MinimumSize = new Size(150, 150);
+>>>>>>> remotes/origin/Development
             Button 
                 wUp = new Button(),
                 hUp = new Button(),
@@ -103,7 +108,11 @@ namespace MineSweeper
         }
         private void WindowResize(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+=======
+            //MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+>>>>>>> remotes/origin/Development
         }
         private void wUp_Click(object sender, EventArgs e)
         {
@@ -145,6 +154,7 @@ namespace MineSweeper
             }
             tHeight.Text = up.ToString();
         }
+<<<<<<< HEAD
 
         public void resetBoard(Form form, int buttons)
         {
@@ -156,6 +166,8 @@ namespace MineSweeper
                 }
             }
         }
+=======
+>>>>>>> remotes/origin/Development
         private void wDown_Click(object sender, EventArgs e)
         {
             int down = 5;
@@ -208,7 +220,11 @@ namespace MineSweeper
                 int.Parse(tHeight.Text) < 5||
                 int.Parse(tWidth.Text) < 5)
             {
+<<<<<<< HEAD
                 MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia");
+=======
+                MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Error);
+>>>>>>> remotes/origin/Development
             }
             else
             {
@@ -223,8 +239,11 @@ namespace MineSweeper
             this.DialogResult = DialogResult.OK;
             
         }
+<<<<<<< HEAD
 
         
 
+=======
+>>>>>>> remotes/origin/Development
     }
 }
