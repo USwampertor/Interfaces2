@@ -110,7 +110,7 @@ namespace MineSweeper
                 case MouseButtons.Right:
                     if (!btn.isFlagged)
                     {
-                        btn.BackgroundImage = Image.FromFile(@"C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\flag.png");
+                        btn.BackgroundImage = Image.FromFile(@"flag.png");
                         btn.BackgroundImageLayout = ImageLayout.Stretch;
                         btn.Text = " ";
                         btn.isFlagged = true;
