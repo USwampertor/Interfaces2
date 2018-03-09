@@ -17,8 +17,9 @@ namespace MineSweeper
         int gameWidth, gameHeight, totalMines;
         public Label timeLabel, mineLabel;
         GridManager grid;
+        Database data;
         public bool gameStarted;
-        
+        List<TimeSpan> highscoreList;
         public Form1()
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace MineSweeper
             ///esto es de mientras
 
             Face = new Button();
-
+            highscoreList = new List<TimeSpan>();
 
             Face.Enabled = false;
             Face.Size = new Size(41, 39);
@@ -39,8 +40,10 @@ namespace MineSweeper
             Face.Location = new Point(((Width / 2) - (2*Face.Width/3)), (menuStrip1.Height));
             Face.AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowOnly;
-           
 
+            data = new Database();
+            data.InputHandler();
+            highscoreList = data.GetHighscores();
 
             time = new Timer();
             timeLabel = new Label();
@@ -100,6 +103,7 @@ namespace MineSweeper
 
             if (MessageBox.Show("Estas seguro de que quieres salir?", "Warning", MessageBoxButtons.YesNo) == DialogResult.No)
             {
+                data.OutputHandler(highscoreList,timeinterval);
                 e.Cancel = true;
             }
 
@@ -112,6 +116,7 @@ namespace MineSweeper
         public void StopTime()
         {
             time.Stop();
+
         }
         private void ShowOptions()
         {
@@ -164,6 +169,14 @@ namespace MineSweeper
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void highScoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                (" 1.-"+highscoreList[0]+"\n 2.-" + highscoreList[1] + "\n 3.-" + highscoreList[2] + "\n 4.-"
+                + highscoreList[3] + "\n 2.-" + highscoreList[4])
+                , "Ayuda", MessageBoxButtons.OK);
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
