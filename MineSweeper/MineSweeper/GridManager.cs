@@ -250,60 +250,72 @@ namespace MineSweeper
                     {
                         if (x is Cell)
                         {
-                            if ((((Cell)y).id - columnCount - 1) == ((Cell)x).id)
+                            if((((Cell)y).id - columnCount) > 0)
                             {
-                                if (((Cell)x).isMine)
+                                if ((((Cell)y).id - columnCount - 1) == ((Cell)x).id)
                                 {
-                                    ((Cell)y).adjMine++;
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
+                                }
+                                if ((((Cell)y).id - columnCount) == ((Cell)x).id)
+                                {
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
+                                }
+                                if ((((Cell)y).id - columnCount + 1) == ((Cell)x).id)
+                                {
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
                                 }
                             }
-                            if ((((Cell)y).id - columnCount) == ((Cell)x).id)
+                            if ((((Cell)y).id % columnCount) != 1)
                             {
-                                if (((Cell)x).isMine)
+                                if ((((Cell)y).id - 1) == ((Cell)x).id)
                                 {
-                                    ((Cell)y).adjMine++;
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
                                 }
                             }
-                            if ((((Cell)y).id - columnCount + 1) == ((Cell)x).id)
+                            if ((((Cell)y).id % columnCount) != 0)
                             {
-                                if (((Cell)x).isMine)
+                                if (((((Cell)y).id + 1) == ((Cell)x).id))
                                 {
-                                    ((Cell)y).adjMine++;
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
                                 }
                             }
-                            if ((((Cell)y).id - 1) == ((Cell)x).id)
+                            if((((Cell)y).id + columnCount)<=cellCount)
                             {
-                                if (((Cell)x).isMine)
+                                if ((((Cell)y).id + columnCount - 1) == ((Cell)x).id)
                                 {
-                                    ((Cell)y).adjMine++;
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
                                 }
-                            }
-                            if ((((Cell)y).id + 1) == ((Cell)x).id)
-                            {
-                                if (((Cell)x).isMine)
+                                if ((((Cell)y).id + columnCount) == ((Cell)x).id)
                                 {
-                                    ((Cell)y).adjMine++;
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
                                 }
-                            }
-                            if ((((Cell)y).id + columnCount - 1) == ((Cell)x).id)
-                            {
-                                if (((Cell)x).isMine)
+                                if ((((Cell)y).id + columnCount + 1) == ((Cell)x).id)
                                 {
-                                    ((Cell)y).adjMine++;
-                                }
-                            }
-                            if ((((Cell)y).id + columnCount) == ((Cell)x).id)
-                            {
-                                if (((Cell)x).isMine)
-                                {
-                                    ((Cell)y).adjMine++;
-                                }
-                            }
-                            if ((((Cell)y).id + columnCount + 1) == ((Cell)x).id)
-                            {
-                                if (((Cell)x).isMine)
-                                {
-                                    ((Cell)y).adjMine++;
+                                    if (((Cell)x).isMine)
+                                    {
+                                        ((Cell)y).adjMine++;
+                                    }
                                 }
                             }
                         }
