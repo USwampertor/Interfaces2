@@ -285,8 +285,9 @@ namespace MineSweeper
                 tWidth.TextLength == 0 ||
                 tMines.TextLength == 0 ||
                 int.Parse(tHeight.Text) < 5 ||
-                int.Parse(tWidth.Text) < 5 ||
-                int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                int.Parse(tWidth.Text) < 5)// ||
+                //int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                
 
             {
                 MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
