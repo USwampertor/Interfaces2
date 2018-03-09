@@ -197,6 +197,8 @@ namespace MineSweeper
                         CascadaMeValeVergaEstaEnEspanolFuckGringos();
                         gameStarted = true;
                         revealCells(btn);
+
+
                     }
                     break;
 
@@ -226,7 +228,7 @@ namespace MineSweeper
                         if (btn.isRevealed)
                         {
                             revealCells(btn);
-                           
+                          
 
                         }
                         else
@@ -269,6 +271,8 @@ namespace MineSweeper
                 btn.ForeColor = Color.Purple;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
+                Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                Face.BackgroundImageLayout = ImageLayout.Stretch;
             }
             if(btn.isBlank)
             {

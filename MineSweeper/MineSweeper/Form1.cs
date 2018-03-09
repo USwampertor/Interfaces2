@@ -130,6 +130,8 @@ namespace MineSweeper
                     //Controls.Add(Face);
                    
                 }
+                Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                Face.BackgroundImageLayout = ImageLayout.Stretch;
             }
 
         }
