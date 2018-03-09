@@ -187,6 +187,8 @@ namespace MineSweeper
                             MessageBox.Show("GAME OVER");
                             clearBoard();
                         }
+                        Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                        Face.BackgroundImageLayout = ImageLayout.Stretch;
                     }
                     else
                     {
@@ -264,41 +266,44 @@ namespace MineSweeper
 
         public void revealCells(Cell btn)
         {
-            if (btn.isMine && !btn.isRevealed)
+            if (!btn.isFlagged)
             {
-                btn.BackgroundImage = Image.FromFile(@"AtomicMine.png");
-                btn.BackgroundImageLayout = ImageLayout.Stretch;
-                btn.Text = "  ";
-                player.Play();
+                if (btn.isMine && !btn.isRevealed)
+                {
+                    btn.BackgroundImage = Image.FromFile(@"AtomicMine.png");
+                    btn.BackgroundImageLayout = ImageLayout.Stretch;
+                    btn.Text = "  ";
+                    player.Play();
 
-                //btn.BackColor = Color.Red;
+                    //btn.BackColor = Color.Red;
 
-                gameLost = true;
-                btn.isFlagged = false;
-                btn.isRevealed = true;
+                    gameLost = true;
+                    btn.isFlagged = false;
+                    btn.isRevealed = true;
 
+                }
+                if (!btn.isBlank && !btn.isMine)
+                {
+                    int adjacentMines = btn.adjMine;
+                    btn.Text = adjacentMines.ToString();
+                    btn.ForeColor = Color.Purple;
+                    btn.isFlagged = false;
+                    btn.isRevealed = true;
+                }
+                if (btn.isBlank)
+                {
+                    btn.Text = " ";
+                    btn.ForeColor = Color.Purple;
+                    btn.isFlagged = false;
+                    btn.isRevealed = true;
+                    Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                    Face.BackgroundImageLayout = ImageLayout.Stretch;
+
+                    cascade(btn);
+
+                }
+                revealedCount++;
             }
-            if(!btn.isBlank && !btn.isMine)
-            {
-                int adjacentMines = btn.adjMine;
-                btn.Text = adjacentMines.ToString();
-                btn.ForeColor = Color.Purple;
-                btn.isFlagged = false;
-                btn.isRevealed = true;
-            }
-            if(btn.isBlank)
-            {
-                btn.Text = " ";
-                btn.ForeColor = Color.Purple;
-                btn.isFlagged = false;
-                btn.isRevealed = true;
-                Face.BackgroundImage = Image.FromFile(@"Happy.png");
-                Face.BackgroundImageLayout = ImageLayout.Stretch;
-
-                cascade(btn);
-
-            }
-            revealedCount++;
         }
 
         public void clearBoard()

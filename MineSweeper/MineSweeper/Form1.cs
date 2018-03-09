@@ -18,7 +18,7 @@ namespace MineSweeper
         public Label timeLabel, mineLabel;
         GridManager grid;
         public bool gameStarted;
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace MineSweeper
             Face.Size = new Size(41, 39);
             Face.BackgroundImage = Image.FromFile(@"Happy.png");
             Face.BackgroundImageLayout = ImageLayout.Stretch;
-            Face.Location = new Point((Width / 2) - (Face.Width / 2), (menuStrip1.Height));
+            Face.Location = new Point(((Width / 2) - (2*Face.Width/3)), (menuStrip1.Height));
             Face.AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowOnly;
            
@@ -90,8 +90,7 @@ namespace MineSweeper
                 ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
             mineLabel.Location = new Point
                 (5, (menuStrip1.Height + 1));
-            
-            Face.Location = new Point((Width / 2) - (Face.Size.Width / 2), (menuStrip1.Height));
+            Face.Location = new Point(((Width / 2) - (2 * Face.Width / 3)), (menuStrip1.Height));
             mineLabel.Text = totalMines.ToString();
         }
         

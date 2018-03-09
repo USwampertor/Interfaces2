@@ -42,17 +42,15 @@ namespace MineSweeper
                 wDown = new Button(),
                 hDown = new Button(),
                 mDown = new Button(),
-                EButton = new Button(),
-                startButton = new Button();
+                EButton = new Button();
+               
             Label
                 lWidth = new Label(),
                 lHeight = new Label(),
                 lMines = new Label(),
                 title = new Label();
 
-            startButton.DialogResult = DialogResult.OK;
-            startButton.Tag = DialogResult.OK;
-            startButton.Text = DialogResult.OK.ToString();
+            
             EButton.Text = DialogResult.OK.ToString();
 
             title.Text = "Selecciona el tamaño del juego";
@@ -122,7 +120,6 @@ namespace MineSweeper
 
             
             EButton.Click += new EventHandler(EButton_Click);
-            startButton.Click += new EventHandler(OptionsButton_Click);
             wUp.Click += new EventHandler(wUp_Click);
             hUp.Click += new EventHandler(hUp_Click);
             mUp.Click += new EventHandler(mUp_Click);
@@ -149,11 +146,15 @@ namespace MineSweeper
         {
             tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10).ToString();
         }
-        private void Mines()
+        private bool Mines()
         {
-
-            maxmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
-            minmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10);
+            if(tWidth.TextLength!=0 && tHeight.TextLength!=0)
+            {
+                maxmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
+                minmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10);
+                return true;
+            }
+            return false;
         }
         private void mUp_Click(object sender, EventArgs e)
         {
@@ -200,10 +201,7 @@ namespace MineSweeper
             }
             tWidth.Text = up.ToString();
             SetMinMines();
-            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
-
-
-            tMines.Text = (int.Parse(tWidth.Text)*int.Parse(tHeight.Text)/4).ToString();
+            
         }
         private void hUp_Click(object sender, EventArgs e)
         {
@@ -293,26 +291,43 @@ namespace MineSweeper
 
         public void EButton_Click(object sender, EventArgs e)
         {
-            Mines();
-            if (
-                tHeight.TextLength == 0 ||
-                tWidth.TextLength == 0 ||
-                tMines.TextLength == 0 ||
-                int.Parse(tHeight.Text) < minheight ||
-                int.Parse(tWidth.Text) < minwidth ||
-                int.Parse(tMines.Text) < minmines||
-                int.Parse(tMines.Text) > maxmines||
-                int.Parse(tHeight.Text) < minheight ||
-                int.Parse(tWidth.Text) < minwidth)
+            if(Mines()==true)
             {
-                MessageBox.Show("Los valores no pueden ser menores a 10 o ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (
+                    tMines.TextLength == 0||
+                    int.Parse(tHeight.Text) < minheight ||
+                    int.Parse(tWidth.Text) < minwidth ||
+                    int.Parse(tMines.Text) < minmines ||
+                    int.Parse(tMines.Text) > maxmines ||
+                    int.Parse(tHeight.Text) < minheight ||
+                    int.Parse(tWidth.Text) < minwidth)
+                {
+                    if(tMines.TextLength==0)
+                    {
+                    MessageBox.Show("Las minas no pueden ser nulas", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                    MessageBox.Show("Los valores no pueden ser menores a 10 o mayores a 50", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    tWidth.Text = minwidth.ToString();
+                    tHeight.Text = minheight.ToString();
+                    SetMinMines();
+                }
+                else
+                {
+                    sMines = int.Parse(tMines.Text);
+                    sHeight = int.Parse(tHeight.Text);
+                    sWidth = int.Parse(tWidth.Text);
+                    this.DialogResult = DialogResult.OK;
+                }
             }
             else
             {
-                sMines = int.Parse(tMines.Text);
-                sHeight = int.Parse(tHeight.Text);
-                sWidth = int.Parse(tWidth.Text);
-                OptionsButton_Click(sender, e);
+                MessageBox.Show("Los valores no pueden ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tWidth.Text = minwidth.ToString();
+                tHeight.Text = minheight.ToString();
+                SetMinMines();
             }
 
         }

@@ -8,3 +8,4 @@ C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\Min
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
+C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
