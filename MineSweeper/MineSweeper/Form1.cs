@@ -15,7 +15,7 @@ namespace MineSweeper
         private Timer time;
         private TimeSpan timeinterval;
         int gameWidth, gameHeight, totalMines;
-        public Label timeLabel;
+        public Label timeLabel, mineLabel;
 
         public Form1()
         {
@@ -27,22 +27,39 @@ namespace MineSweeper
             ///esto es de mientras
             time = new Timer();
             timeLabel = new Label();
+            mineLabel = new Label();
             time.Interval = 100;
             timeinterval = new TimeSpan();
+            timeLabel.Width = TextRenderer.MeasureText("00:00",timeLabel.Font).Width;
+            mineLabel.Width = TextRenderer.MeasureText("0000",mineLabel.Font).Width;
 
+            mineLabel.BackColor = Color.Black;
+            mineLabel.ForeColor = Color.GreenYellow;
             timeLabel.BackColor = Color.Black;
             timeLabel.ForeColor = Color.GreenYellow;
             timeLabel.TextAlign = ContentAlignment.MiddleCenter;
+            mineLabel.TextAlign = ContentAlignment.MiddleCenter;
 
             timeLabel.Location = new Point
-                ((this.Width/2)-(timeLabel.Width/2),(menuStrip1.Height+1));
+                ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
+            mineLabel.Location = new Point
+                (5, (menuStrip1.Height + 1));
 
             time.Tick += new EventHandler(time_Tick);
             this.FormClosing += new FormClosingEventHandler(Closing);
+            this.SizeChanged += new EventHandler(WindowResize);
 
+
+            Controls.Add(mineLabel);
             Controls.Add(timeLabel);
         }
-
+        private void WindowResize(object sender, EventArgs e)
+        {
+            timeLabel.Location = new Point
+                ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
+            mineLabel.Location = new Point
+                (5, (menuStrip1.Height + 1));
+        }
         void time_Tick(object sender, EventArgs e)
         {
             timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
@@ -74,6 +91,7 @@ namespace MineSweeper
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
                     totalMines = gameSize.sMines;
+                    mineLabel.Text = totalMines.ToString();
                     time.Start();
                    
                 }
