@@ -14,10 +14,11 @@ namespace MineSweeper
     {
         public int sWidth, sHeight, sMines;
 
-
+        int minheight = 10, minwidth = 10, maxheight = 50, maxwidth = 50;
         TextBox tWidth = new TextBox();
         TextBox tHeight = new TextBox();
         TextBox tMines = new TextBox();
+        int minmines, maxmines;
         public Options()
         {
 
@@ -73,12 +74,13 @@ namespace MineSweeper
             lMines.Size = TextRenderer.MeasureText(lWidth.Text, lWidth.Font);
             lHeight.Text = "Alto";
             lHeight.Size = TextRenderer.MeasureText(lWidth.Text, lWidth.Font);
-
-            tWidth.Text = "5";
+            tWidth.Text = minwidth.ToString();
             tWidth.Width = 30;
-            tHeight.Text = "5";
+            tHeight.Text = minheight.ToString();
             tHeight.Width = 30;
-            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tWidth.Text) / 4).ToString();
+            minmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10);
+            maxmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
+            tMines.Text = minmines.ToString();
             tMines.Width = 30;
 
             tWidth.Height = wDown.Size.Height;
@@ -142,136 +144,138 @@ namespace MineSweeper
             Controls.Add(hDown);
             Controls.Add(mDown);
         }
-       
+        private void SetMinMines()
+        {
+            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10).ToString();
+        }
+        private void Mines()
+        {
+
+            maxmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
+            minmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10);
+        }
         private void mUp_Click(object sender, EventArgs e)
         {
-            int up = (int.Parse(tWidth.Text) * int.Parse(tWidth.Text) / 4);
+            Mines();
+            int up = minmines;
             if (tMines.TextLength != 0)
             {
                 up = int.Parse(tMines.Text);
                 up++;
-                if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2))
 
-                if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text)/2))
+                if (up >= maxmines)
                 {
-                    up = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
+                    up = maxmines;
                 }
-                if (up <= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                if (up <= minmines)
                 {
-                    up = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4);
+                    up = minmines;
                 }
 
             }
-
             tMines.Text = up.ToString();
 
         }
         private void wUp_Click(object sender, EventArgs e)
         {
-            int up = 5;
+            int up = minwidth;
             if (tWidth.TextLength != 0)
             {
                 up = int.Parse(tWidth.Text);
                 up++;
-                if (up >= 100)
+                if (up >= maxwidth)
                 {
-                    up = 100;
+                    up = maxwidth;
                 }
-                if (up <= 5)
+                if (up <= minwidth)
                 {
-                    up = 5;
+                    up = minwidth;
                 }
 
             }
             tWidth.Text = up.ToString();
-            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
-
-
-            tMines.Text = (int.Parse(tWidth.Text)*int.Parse(tHeight.Text)/4).ToString();
-            
+            SetMinMines();
         }
         private void hUp_Click(object sender, EventArgs e)
         {
-            int up = 5;
+            int up = minheight;
             if (tHeight.TextLength != 0)
             {
                 up = int.Parse(tHeight.Text);
                 up++;
-                if (up >= 100)
+                if (up >= maxheight)
                 {
-                    up = 100;
+                    up = maxheight;
                 }
-                if (up <= 5)
+                if (up <= minheight)
                 {
-                    up = 5;
+                    up = minheight;
                 }
 
             }
             tHeight.Text = up.ToString();
-            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
+            SetMinMines();
         }
         private void wDown_Click(object sender, EventArgs e)
         {
-            int down = 5;
+            int down = minwidth;
             if (tWidth.TextLength != 0)
             {
                 down = int.Parse(tWidth.Text);
                 down--;
-                if (down >= 100)
+                if (down >= maxwidth)
                 {
-                    down = 100;
+                    down = maxwidth;
                 }
-                if (down <= 5)
+                if (down <= minwidth)
                 {
-                    down = 5;
+                    down = minwidth;
                 }
 
             }
             tWidth.Text = down.ToString();
-            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
+            SetMinMines();
         }
         private void hDown_Click(object sender, EventArgs e)
         {
-            int down = 5;
+            int down = minheight;
             if (tHeight.TextLength != 0)
             {
                 down = int.Parse(tHeight.Text);
                 down--;
-                if (down >= 100)
+                if (down >= maxheight)
                 {
-                    down = 100;
+                    down = maxheight;
                 }
-                if (down <= 5)
+                if (down <= minheight)
                 {
-                    down = 5;
+                    down = minheight;
                 }
 
             }
 
             tHeight.Text = down.ToString();
-            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
+            SetMinMines();
         }
         private void mDown_Click(object sender, EventArgs e)
         {
-            int down = (int.Parse(tWidth.Text) * int.Parse(tWidth.Text) / 4);
+            Mines();
+            int down = minmines;
             if (tMines.TextLength != 0)
             {
                 down = int.Parse(tMines.Text);
                 down--;
-                if (down >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2))
+                if (down >= maxmines)
                 {
-                    down = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
+                    down = maxmines;
                 }
-                if (down <= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                if (down <= minmines)
                 {
-                    down = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4);
+                    down = minmines;
                 }
 
             }
             tMines.Text = down.ToString();
-
-
-            
         }
         private void Options_Load(object sender, EventArgs e)
         {
@@ -280,17 +284,19 @@ namespace MineSweeper
 
         public void EButton_Click(object sender, EventArgs e)
         {
+            Mines();
             if (
                 tHeight.TextLength == 0 ||
                 tWidth.TextLength == 0 ||
                 tMines.TextLength == 0 ||
-                int.Parse(tHeight.Text) < 5 ||
-                int.Parse(tWidth.Text) < 5)// ||
-                //int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                int.Parse(tHeight.Text) < minheight ||
+                int.Parse(tWidth.Text) < minwidth ||
+                int.Parse(tMines.Text) < minmines||
+                int.Parse(tMines.Text) > maxmines)
                 
 
             {
-                MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Los valores no pueden ser menores a 10 o ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
