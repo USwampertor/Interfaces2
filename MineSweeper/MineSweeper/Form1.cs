@@ -21,27 +21,41 @@ namespace MineSweeper
         {
             InitializeComponent();
             InitializeDynamicCompontent();
-            Face.Enabled = false;
+            
         }
         private void InitializeDynamicCompontent()
         {
             ///esto es de mientras
             time = new Timer();
+            Face = new Button();
             timeLabel = new Label();
+
+            Face.Enabled = false;
+            Face.Size = new Size(41, 39);
+            Face.BackgroundImage = Image.FromFile(@"Happy.png");
+            Face.BackgroundImageLayout = ImageLayout.Stretch;
+            Face.Location = new Point((Width / 2) - (Face.Width / 2), (menuStrip1.Height));
+            Face.AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowOnly;
+           
+
             time.Interval = 100;
             timeinterval = new TimeSpan();
-
+            string a = "0000";
             timeLabel.BackColor = Color.Black;
             timeLabel.ForeColor = Color.GreenYellow;
+            timeLabel.Width = TextRenderer.MeasureText(a,timeLabel.Font).Width;
+            //timeLabel.Anchor = (AnchorStyles.Right);
             timeLabel.TextAlign = ContentAlignment.MiddleCenter;
+            timeLabel.Location = new Point((Width) - (timeLabel.Width / 2), (menuStrip1.Height));
 
-            timeLabel.Location = new Point
-                ((this.Width / 2) - (timeLabel.Width / 2), (menuStrip1.Height + 1));
+
 
             time.Tick += new EventHandler(time_Tick);
             this.FormClosing += new FormClosingEventHandler(Closing);
 
-            Controls.Add(timeLabel);
+            //Controls.Add(timeLabel);
+            //Controls.Add(Face);
         }
 
         void time_Tick(object sender, EventArgs e)
@@ -82,6 +96,17 @@ namespace MineSweeper
                     GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
                     AutoSize = true;
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+                    Face.AutoSize = true;
+                    AutoSizeMode = AutoSizeMode.GrowOnly;
+                    Face.Location = new Point((Width/2) - (Face.Width/2), (menuStrip1.Height));
+                   
+                    
+                    timeLabel.Location = new Point((Width) - (timeLabel.Width), (menuStrip1.Height));
+
+                    Controls.Add(timeLabel);
+                    Controls.Add(Face);
+
                     //grid.mineGenerator(this, buttonsToButton);
                 }
             }

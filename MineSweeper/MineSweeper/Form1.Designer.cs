@@ -35,7 +35,6 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Face = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,24 +96,11 @@
             this.créditosToolStripMenuItem.Text = "Acerca de...";
             this.créditosToolStripMenuItem.Click += new System.EventHandler(this.créditosToolStripMenuItem_Click);
             // 
-            // Face
-            // 
-            this.Face.AutoSize = true;
-            this.Face.BackgroundImage = global::MineSweeper.Properties.Resources.Happy;
-            this.Face.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Face.Location = new System.Drawing.Point(152, 27);
-            this.Face.Name = "Face";
-            this.Face.Size = new System.Drawing.Size(39, 41);
-            this.Face.TabIndex = 1;
-            this.Face.UseVisualStyleBackColor = true;
-            this.Face.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 349);
-            this.Controls.Add(this.Face);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
