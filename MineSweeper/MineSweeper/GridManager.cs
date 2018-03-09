@@ -270,8 +270,12 @@ namespace MineSweeper
                 btn.ForeColor = Color.Purple;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
+<<<<<<< HEAD
                 Face.BackgroundImage = Image.FromFile(@"Happy.png");
                 Face.BackgroundImageLayout = ImageLayout.Stretch;
+=======
+                cascade(btn);
+>>>>>>> b8ad0034ad93a1346e2a5fd7d6e1570ad6606d87
             }
         }
 
@@ -313,7 +317,7 @@ namespace MineSweeper
                         {
                             if((((Cell)y).id - columnCount) > 0)
                             {
-                                if ((((Cell)y).id - columnCount - 1) == ((Cell)x).id)
+                                if (((((Cell)y).id - columnCount - 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 1)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -327,7 +331,7 @@ namespace MineSweeper
                                         ((Cell)y).adjMine++;
                                     }
                                 }
-                                if ((((Cell)y).id - columnCount + 1) == ((Cell)x).id)
+                                if (((((Cell)y).id - columnCount + 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 0)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -335,29 +339,23 @@ namespace MineSweeper
                                     }
                                 }
                             }
-                            if ((((Cell)y).id % columnCount) != 1)
+                            if (((((Cell)y).id - 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 1)
                             {
-                                if ((((Cell)y).id - 1) == ((Cell)x).id)
+                                if (((Cell)x).isMine)
                                 {
-                                    if (((Cell)x).isMine)
-                                    {
-                                        ((Cell)y).adjMine++;
-                                    }
+                                    ((Cell)y).adjMine++;
                                 }
                             }
-                            if ((((Cell)y).id % columnCount) != 0)
+                            if (((((Cell)y).id + 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 0)
                             {
-                                if (((((Cell)y).id + 1) == ((Cell)x).id))
+                                if (((Cell)x).isMine)
                                 {
-                                    if (((Cell)x).isMine)
-                                    {
-                                        ((Cell)y).adjMine++;
-                                    }
+                                    ((Cell)y).adjMine++;
                                 }
                             }
                             if((((Cell)y).id + columnCount)<=cellCount)
                             {
-                                if ((((Cell)y).id + columnCount - 1) == ((Cell)x).id)
+                                if (((((Cell)y).id + columnCount - 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 1)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -371,7 +369,7 @@ namespace MineSweeper
                                         ((Cell)y).adjMine++;
                                     }
                                 }
-                                if ((((Cell)y).id + columnCount + 1) == ((Cell)x).id)
+                                if (((((Cell)y).id + columnCount + 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 0)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -387,6 +385,110 @@ namespace MineSweeper
                         else
                         {
                             ((Cell)y).isBlank = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void cascade(Cell btn)
+        {
+            foreach (Control x in tableroporquemevalemadreelingles.Controls)
+            {
+                if (x is Cell)
+                {
+                    if ((btn.id - columnCount) > 0)
+                    {
+                        if (((btn.id - columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
+                        {
+                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            {
+                                ((Cell)x).Text = " ";
+                                ((Cell)x).ForeColor = Color.Purple;
+                                ((Cell)x).isFlagged = false;
+                                ((Cell)x).isRevealed = true;
+                                cascade(((Cell)x));
+                            }
+                        }
+                        if ((btn.id - columnCount) == ((Cell)x).id)
+                        {
+                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            {
+                                ((Cell)x).Text = " ";
+                                ((Cell)x).ForeColor = Color.Purple;
+                                ((Cell)x).isFlagged = false;
+                                ((Cell)x).isRevealed = true;
+                                cascade(((Cell)x));
+                            }
+                        }
+                        if (((btn.id - columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
+                        {
+                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            {
+                                ((Cell)x).Text = " ";
+                                ((Cell)x).ForeColor = Color.Purple;
+                                ((Cell)x).isFlagged = false;
+                                ((Cell)x).isRevealed = true;
+                                cascade(((Cell)x));
+                            }
+                        }
+                    }
+                    if (((btn.id - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
+                    {
+                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        {
+                            ((Cell)x).Text = " ";
+                            ((Cell)x).ForeColor = Color.Purple;
+                            ((Cell)x).isFlagged = false;
+                            ((Cell)x).isRevealed = true;
+                            cascade(((Cell)x));
+                        }
+                    }
+                    if (((btn.id + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
+                    {
+                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        {
+                            ((Cell)x).Text = " ";
+                            ((Cell)x).ForeColor = Color.Purple;
+                            ((Cell)x).isFlagged = false;
+                            ((Cell)x).isRevealed = true;
+                            cascade(((Cell)x));
+                        }
+                    }
+                    if ((btn.id + columnCount) <= cellCount)
+                    {
+                        if (((btn.id + columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
+                        {
+                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            {
+                                ((Cell)x).Text = " ";
+                                ((Cell)x).ForeColor = Color.Purple;
+                                ((Cell)x).isFlagged = false;
+                                ((Cell)x).isRevealed = true;
+                                cascade(((Cell)x));
+                            }
+                        }
+                        if ((btn.id + columnCount) == ((Cell)x).id)
+                        {
+                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            {
+                                ((Cell)x).Text = " ";
+                                ((Cell)x).ForeColor = Color.Purple;
+                                ((Cell)x).isFlagged = false;
+                                ((Cell)x).isRevealed = true;
+                                cascade(((Cell)x));
+                            }
+                        }
+                        if (((btn.id + columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
+                        {
+                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            {
+                                ((Cell)x).Text = " ";
+                                ((Cell)x).ForeColor = Color.Purple;
+                                ((Cell)x).isFlagged = false;
+                                ((Cell)x).isRevealed = true;
+                                cascade(((Cell)x));
+                            }
                         }
                     }
                 }
