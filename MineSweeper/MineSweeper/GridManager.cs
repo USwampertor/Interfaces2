@@ -225,12 +225,6 @@ namespace MineSweeper
                             flagCount++;
                             if (flagCount == mineCount && revealedCount == cellCount-mineCount)
                             {
-
-                                Face.BackgroundImage = Image.FromFile(@"Victory.png");
-                                Face.BackgroundImageLayout = ImageLayout.Stretch;
-
-                                MessageBox.Show("Ganaste.");
-                                clearBoard();
                                 wonGame();
                             }
                         }
@@ -539,7 +533,9 @@ namespace MineSweeper
             Face.BackgroundImageLayout = ImageLayout.Stretch;
 
             MessageBox.Show("Ganaste.");
+
             clearBoard();
+            ((Form1)tableroporquemevalemadreelingles).StopTime();
         }
 
         //public void FirstMove(int x, int y, Random rand)

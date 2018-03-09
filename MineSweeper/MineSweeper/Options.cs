@@ -118,7 +118,9 @@ namespace MineSweeper
                 (((this.Width / 2) - (EButton.Width / 2)), ((2 * this.Height / 3) - (EButton.Height / 2)));
 
 
-            
+            tMines.KeyPress += new KeyPressEventHandler(textbox_Enter);
+            tWidth.KeyPress += textbox_Enter;
+            tHeight.KeyPress += textbox_Enter;
             EButton.Click += new EventHandler(EButton_Click);
             wUp.Click += new EventHandler(wUp_Click);
             hUp.Click += new EventHandler(hUp_Click);
@@ -141,6 +143,15 @@ namespace MineSweeper
             Controls.Add(wDown);
             Controls.Add(hDown);
             Controls.Add(mDown);
+        }
+        private void textbox_Enter(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                SetMinMines();
+                CheckIfStart();
+
+            }
         }
         private void SetMinMines()
         {
@@ -291,10 +302,15 @@ namespace MineSweeper
 
         public void EButton_Click(object sender, EventArgs e)
         {
-            if(Mines()==true)
+
+            CheckIfStart();
+        }
+        public void CheckIfStart()
+        {
+            if (Mines() == true)
             {
                 if (
-                    tMines.TextLength == 0||
+                    tMines.TextLength == 0 ||
                     int.Parse(tHeight.Text) < minheight ||
                     int.Parse(tWidth.Text) < minwidth ||
                     int.Parse(tMines.Text) < minmines ||
@@ -302,13 +318,13 @@ namespace MineSweeper
                     int.Parse(tHeight.Text) < minheight ||
                     int.Parse(tWidth.Text) < minwidth)
                 {
-                    if(tMines.TextLength==0)
+                    if (tMines.TextLength == 0)
                     {
-                    MessageBox.Show("Las minas no pueden ser nulas", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Las minas no pueden ser nulas", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                    MessageBox.Show("Los valores no pueden ser menores a 10 o mayores a 50", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Los valores no pueden ser menores a 10 o mayores a 50", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     tWidth.Text = minwidth.ToString();
                     tHeight.Text = minheight.ToString();
@@ -329,12 +345,7 @@ namespace MineSweeper
                 tHeight.Text = minheight.ToString();
                 SetMinMines();
             }
-
         }
-        public void OptionsButton_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-
-        }
+        
     }
 }
