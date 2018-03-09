@@ -28,6 +28,7 @@ namespace MineSweeper
         int mineCount;
         int mineTotal;
         int flagCount;
+        int revealedCount;
         int columnCount;
         int fileCount;
         int firstCell;
@@ -175,6 +176,10 @@ namespace MineSweeper
                     }
                     Face.BackgroundImage = Image.FromFile(@"Happy.png");
                     Face.BackgroundImageLayout = ImageLayout.Stretch;
+                    if (flagCount == mineCount && revealedCount == cellCount - mineCount)
+                    {
+                        wonGame();
+                    }
                     break;
 
                 case MouseButtons.Right:
@@ -187,14 +192,9 @@ namespace MineSweeper
                         if (btn.isFlagged && btn.isMine)
                         {
                             flagCount++;
-                            if (flagCount == mineCount)
+                            if (flagCount == mineCount && revealedCount == cellCount-mineCount)
                             {
-
-                                Face.BackgroundImage = Image.FromFile(@"Victory.png");
-                                Face.BackgroundImageLayout = ImageLayout.Stretch;
-
-                                MessageBox.Show("Ganaste.");
-                                clearBoard();
+                                wonGame();
                             }
                         }
                     }
@@ -211,6 +211,10 @@ namespace MineSweeper
                             btn.BackgroundImage = null;
                             btn.Text = "?";
                             btn.isFlagged = false;
+                            if (btn.isMine)
+                            {
+                                flagCount--;
+                            }
                         }
                     }
                     break;
@@ -266,6 +270,7 @@ namespace MineSweeper
 
                 }
             }
+            revealedCount++;
         }
 
         public void clearBoard()
@@ -294,6 +299,7 @@ namespace MineSweeper
             mineCount = 0;
             mineTotal = mines;
             flagCount = 0;
+            revealedCount = 0;
         }
 
         public void CascadaMeValeVergaEstaEnEspanolFuckGringos()
@@ -392,13 +398,14 @@ namespace MineSweeper
                     {
                         if (((btn.id - columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                             else if(!((Cell)x).isMine)
                             {
@@ -407,87 +414,161 @@ namespace MineSweeper
                         }
                         if ((btn.id - columnCount) == ((Cell)x).id)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if (((btn.id - columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                     }
                     if (((btn.id - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                     {
-                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                         {
-                            ((Cell)x).Text = " ";
-                            ((Cell)x).ForeColor = Color.Purple;
-                            ((Cell)x).isFlagged = false;
-                            ((Cell)x).isRevealed = true;
-                            cascade(((Cell)x));
+                            //((Cell)x).Text = " ";
+                            //((Cell)x).ForeColor = Color.Purple;
+                            //((Cell)x).isFlagged = false;
+                            //((Cell)x).isRevealed = true;
+                            //cascade(((Cell)x));
+                            revealCells(((Cell)x));
                         }
                     }
                     if (((btn.id + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                     {
-                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                         {
-                            ((Cell)x).Text = " ";
-                            ((Cell)x).ForeColor = Color.Purple;
-                            ((Cell)x).isFlagged = false;
-                            ((Cell)x).isRevealed = true;
-                            cascade(((Cell)x));
+                            //((Cell)x).Text = " ";
+                            //((Cell)x).ForeColor = Color.Purple;
+                            //((Cell)x).isFlagged = false;
+                            //((Cell)x).isRevealed = true;
+                            //cascade(((Cell)x));
+                            revealCells(((Cell)x));
                         }
                     }
                     if ((btn.id + columnCount) <= cellCount)
                     {
                         if (((btn.id + columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if ((btn.id + columnCount) == ((Cell)x).id)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if (((btn.id + columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                     }
                 }
             }
         }
+
+        void wonGame()
+        {
+            Face.BackgroundImage = Image.FromFile(@"Victory.png");
+            Face.BackgroundImageLayout = ImageLayout.Stretch;
+
+            MessageBox.Show("Ganaste.");
+            clearBoard();
+        }
+
+        //public void FirstMove(int x, int y, Random rand)
+        //{
+        //    //For any board, take the user's first revealed panel + any neighbors of that panel to X depth, and mark them as unavailable for mine placement.
+        //    var depth = 0.125 * Width; //12.5% (1/8th) of the board width becomes the depth of unavailable panels
+        //    var neighbors = GetNeighbors(x, y, (int)depth); //Get all neighbors to specified depth
+        //    neighbors.Add(GetPanel(x, y)); //Don't place a mine in the user's first move!
+
+        //    //Select random panels from set of panels which are not excluded by the first-move rule
+        //    var mineList = Panels.Except(neighbors).OrderBy(user => rand.Next());
+        //    var mineSlots = mineList.Take(MineCount).ToList().Select(z => new { z.X, z.Y });
+
+        //    //Place the mines
+        //    foreach (var mineCoord in mineSlots)
+        //    {
+        //        Panels.Single(panel => panel.X == mineCoord.X && panel.Y == mineCoord.Y).IsMine = true;
+        //    }
+
+        //    //For every panel which is not a mine, determine and save the adjacent mines.
+        //    foreach (var openPanel in Panels.Where(panel => !panel.IsMine))
+        //    {
+        //        var nearbyPanels = GetNeighbors(openPanel.X, openPanel.Y);
+        //        openPanel.AdjacentMines = nearbyPanels.Count(z => z.IsMine);
+        //    }
+        //}
+
+
+
+        //      var generateMines = function(grid, grid_x, grid_y, mine_count) {
+        //  var mine_value = -(mine_count * 2), mine_x, mine_y;
+        //      var m, n;
+
+        //  for (var k=0; k<mine_count; k++) {
+        //    while (true) {
+        //      mine_x = Math.floor(Math.random() * grid_x);
+        //      mine_y = Math.floor(Math.random() * grid_y);
+
+        //      // TODO : add more randomness and strategies here
+
+        //      if (0 <= grid[mine_x][mine_y]) {
+        //        break;
+        //      }
+        //    }
+        //    for (n=-1; n<2; n++) {
+        //      for (m=-1; m<2; m++) {
+        //        if (0 == n && 0 == m) {
+        //          grid[mine_x][mine_y] = mine_value;
+        //        } else if (_between(mine_x+n,0,grid_x-1) && _between(mine_y+m,0, grid_y-1)) {
+        //          grid[mine_x + n][mine_y + m]++;
+        //        }
+        //      }
+        //    }
+        //  }
+
+        //  return grid;
+        //};
+
+
     }
 }
