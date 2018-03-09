@@ -30,6 +30,7 @@ namespace MineSweeper
         int flagCount;
         int columnCount;
         int fileCount;
+        int firstCell;
 
         public GridManager(int xg, int yg, Form form, int mines, Button face)
         {
@@ -82,10 +83,14 @@ namespace MineSweeper
                     {
                         //if (mineCount < mineTotal)
                         //{
-                        if (ListaMinas[i] == ((Cell)x).id)
+                        if (ListaMinas[i] == ((Cell)x).id && ListaMinas[i] != firstCell)
                         {
+                            if (ListaMinas[i] != firstCell)
+                                i++;
+
                             ((Cell)x).isMine = true;
                             mineCount++;
+                            
                         }
                     //}
                     }
@@ -151,6 +156,7 @@ namespace MineSweeper
         private void button1_MouseUp(object sender, MouseEventArgs e)
         {
             var btn = ((Cell)sender);
+            firstCell = btn.id;
             switch (e.Button)
             {
                 case MouseButtons.Left:

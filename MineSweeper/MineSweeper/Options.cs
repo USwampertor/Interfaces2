@@ -12,11 +12,9 @@ namespace MineSweeper
 {
     public partial class Options : Form
     {
-<<<<<<< HEAD
         public int sWidth, sHeight, sMines;
-=======
-        public int sWidth, sHeight,sMines;
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
+
+
         TextBox tWidth = new TextBox();
         TextBox tHeight = new TextBox();
         TextBox tMines = new TextBox();
@@ -88,16 +86,11 @@ namespace MineSweeper
             tMines.Height = wDown.Size.Height;
 
             title.Location = new Point
-<<<<<<< HEAD
                 (((this.Width / 2) - (title.Width / 2)), 10);
-=======
-                (((this.Width/2)-(title.Width/2)),10);
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
 
             lWidth.Location = new Point
                (((this.Width / 5) - (lWidth.Size.Width / 2)), ((this.Height / 3) - (lWidth.Height / 2)));
             wDown.Location = new Point
-<<<<<<< HEAD
                 (((lWidth.Location.X) + (lWidth.Size.Width) + 1), (lWidth.Location.Y - (wDown.Size.Height / 4)));
             tWidth.Location = new Point
                 (((wDown.Location.X) + (wDown.Size.Width) + 1), (lWidth.Location.Y - (tWidth.Size.Height / 5)));
@@ -122,35 +115,9 @@ namespace MineSweeper
 
             EButton.Location = new Point
                 (((this.Width / 2) - (EButton.Width / 2)), ((2 * this.Height / 3) - (EButton.Height / 2)));
-=======
-                (((lWidth.Location.X) +(lWidth.Size.Width)+1), (lWidth.Location.Y-(wDown.Size.Height/4)));
-            tWidth.Location = new Point
-                (((wDown.Location.X) + (wDown.Size.Width) + 1), (lWidth.Location.Y-(tWidth.Size.Height/5)));
-            wUp.Location = new Point
-                (((tWidth.Location.X) + (tWidth.Size.Width) + 1), (lWidth.Location.Y-(wUp.Size.Height/4)));
-            lHeight.Location = new Point
-                (((this.Width / 5) - (lHeight.Size.Width / 2)), ((tWidth.Location.Y) + (tWidth.Size.Height) + 5));
-            hDown.Location = new Point
-                (((lHeight.Location.X) + (lHeight.Size.Width) + 1), (lHeight.Location.Y-(hDown.Size.Height/4)));
-            tHeight.Location = new Point
-                (((hDown.Location.X) + (hDown.Size.Width) + 1), (lHeight.Location.Y-(tHeight.Size.Height/5)));
-            hUp.Location = new Point
-                (((tHeight.Location.X) + (tHeight.Size.Width) + 1), (lHeight.Location.Y-(hUp.Size.Height/4)));
-            lMines.Location = new Point
-                (((this.Width / 5) - (lHeight.Size.Width / 2)), ((tHeight.Location.Y) + (tHeight.Size.Height) + 5));
-            mDown.Location = new Point
-                (((lMines.Location.X)+(lHeight.Size.Width)+1), (lMines.Location.Y-(mDown.Size.Height/4)));
-            tMines.Location = new Point
-                (((mDown.Location.X) + (mDown.Size.Width) + 1), (lMines.Location.Y-(tMines.Size.Height/5)));
-            mUp.Location = new Point
-                (((tMines.Location.X) + (tMines.Size.Width) + 1), (lMines.Location.Y-(mUp.Size.Height/4)));
-
-            EButton.Location = new Point
-                (((this.Width / 2) - (EButton.Width / 2)), ((2*this.Height / 3) - (EButton.Height / 2)));
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
 
 
-            this.SizeChanged += new EventHandler(WindowResize);
+            
             EButton.Click += new EventHandler(EButton_Click);
             startButton.Click += new EventHandler(OptionsButton_Click);
             wUp.Click += new EventHandler(wUp_Click);
@@ -175,10 +142,7 @@ namespace MineSweeper
             Controls.Add(hDown);
             Controls.Add(mDown);
         }
-        private void WindowResize(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+       
         private void mUp_Click(object sender, EventArgs e)
         {
             int up = (int.Parse(tWidth.Text) * int.Parse(tWidth.Text) / 4);
@@ -186,11 +150,9 @@ namespace MineSweeper
             {
                 up = int.Parse(tMines.Text);
                 up++;
-<<<<<<< HEAD
                 if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2))
-=======
+
                 if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text)/2))
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
                 {
                     up = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
                 }
@@ -222,13 +184,11 @@ namespace MineSweeper
 
             }
             tWidth.Text = up.ToString();
-<<<<<<< HEAD
             tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
 
-=======
+
             tMines.Text = (int.Parse(tWidth.Text)*int.Parse(tHeight.Text)/4).ToString();
             
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
         }
         private void hUp_Click(object sender, EventArgs e)
         {
@@ -309,11 +269,9 @@ namespace MineSweeper
 
             }
             tMines.Text = down.ToString();
-<<<<<<< HEAD
 
-=======
+
             
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
         }
         private void Options_Load(object sender, EventArgs e)
         {
@@ -323,21 +281,13 @@ namespace MineSweeper
         public void EButton_Click(object sender, EventArgs e)
         {
             if (
-<<<<<<< HEAD
                 tHeight.TextLength == 0 ||
                 tWidth.TextLength == 0 ||
                 tMines.TextLength == 0 ||
                 int.Parse(tHeight.Text) < 5 ||
                 int.Parse(tWidth.Text) < 5 ||
                 int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
-=======
-                tHeight.TextLength == 0 || 
-                tWidth.TextLength == 0 || 
-                tMines.TextLength == 0 ||
-                int.Parse(tHeight.Text) < 5 ||
-                int.Parse(tWidth.Text) < 5 ||
-                int.Parse(tMines.Text)< (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
+
             {
                 MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -15,11 +15,7 @@ namespace MineSweeper
         private Timer time;
         private TimeSpan timeinterval;
         int gameWidth, gameHeight, totalMines;
-<<<<<<< HEAD
-        public Label timeLabel;
-=======
         public Label timeLabel, mineLabel;
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
 
         public Form1()
         {
@@ -30,10 +26,9 @@ namespace MineSweeper
         private void InitializeDynamicCompontent()
         {
             ///esto es de mientras
-            time = new Timer();
-<<<<<<< HEAD
+
             Face = new Button();
-            timeLabel = new Label();
+
 
             Face.Enabled = false;
             Face.Size = new Size(41, 39);
@@ -44,36 +39,14 @@ namespace MineSweeper
             AutoSizeMode = AutoSizeMode.GrowOnly;
            
 
-            time.Interval = 100;
-            timeinterval = new TimeSpan();
-            string a = "0000";
-            timeLabel.BackColor = Color.Black;
-            timeLabel.ForeColor = Color.GreenYellow;
-            timeLabel.Width = TextRenderer.MeasureText(a,timeLabel.Font).Width;
-            //timeLabel.Anchor = (AnchorStyles.Right);
-            timeLabel.TextAlign = ContentAlignment.MiddleCenter;
-            timeLabel.Location = new Point((Width) - (timeLabel.Width / 2), (menuStrip1.Height));
 
-
-
-            time.Tick += new EventHandler(time_Tick);
-            this.FormClosing += new FormClosingEventHandler(Closing);
-
-            //Controls.Add(timeLabel);
-            //Controls.Add(Face);
-        }
-
-        void time_Tick(object sender, EventArgs e)
-        {
-            timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
-            timeLabel.Text = (timeinterval.Minutes + ":" + timeinterval.Seconds);
-=======
+            time = new Timer();
             timeLabel = new Label();
             mineLabel = new Label();
             time.Interval = 100;
             timeinterval = new TimeSpan();
-            timeLabel.Width = TextRenderer.MeasureText("00:00",timeLabel.Font).Width;
-            mineLabel.Width = TextRenderer.MeasureText("0000",mineLabel.Font).Width;
+            timeLabel.Width = TextRenderer.MeasureText("00:00", timeLabel.Font).Width;
+            mineLabel.Width = TextRenderer.MeasureText("0000", mineLabel.Font).Width;
 
             mineLabel.BackColor = Color.Black;
             mineLabel.ForeColor = Color.GreenYellow;
@@ -94,6 +67,15 @@ namespace MineSweeper
 
             Controls.Add(mineLabel);
             Controls.Add(timeLabel);
+
+
+            Controls.Add(Face);
+        }
+
+        void time_Tick(object sender, EventArgs e)
+        {
+            timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
+            timeLabel.Text = (timeinterval.Minutes + ":" + timeinterval.Seconds);
         }
         private void WindowResize(object sender, EventArgs e)
         {
@@ -101,13 +83,11 @@ namespace MineSweeper
                 ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
             mineLabel.Location = new Point
                 (5, (menuStrip1.Height + 1));
+
+            Face.Location = new Point((Width / 2) - (Face.Size.Width / 2), (menuStrip1.Height));
+            mineLabel.Text = totalMines.ToString();
         }
-        void time_Tick(object sender, EventArgs e)
-        {
-            timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
-            timeLabel.Text = (timeinterval.Minutes+":"+timeinterval.Seconds);
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
-        }
+        
 
         new public void Closing(object sender, FormClosingEventArgs e)
         {
@@ -116,13 +96,6 @@ namespace MineSweeper
             {
                 e.Cancel = true;
             }
-<<<<<<< HEAD
-
-
-=======
-            
-                
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
 
         }
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -140,31 +113,22 @@ namespace MineSweeper
                 {
                     gameWidth = gameSize.sWidth;
                     gameHeight = gameSize.sHeight;
-<<<<<<< HEAD
                     buttonsToButton = gameWidth * gameHeight;
                     totalMines = gameSize.sMines;
                     time.Start();
                     GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
                     AutoSize = true;
-                    AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
                     Face.AutoSize = true;
-                    AutoSizeMode = AutoSizeMode.GrowOnly;
-                    Face.Location = new Point((Width/2) - (Face.Width/2), (menuStrip1.Height));
-                   
-                    
-                    timeLabel.Location = new Point((Width) - (timeLabel.Width), (menuStrip1.Height));
-
-                    Controls.Add(timeLabel);
-                    Controls.Add(Face);
-
-                    //grid.mineGenerator(this, buttonsToButton);
-=======
-                    totalMines = gameSize.sMines;
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                    Face.Location = new Point((Width/2) - (Face.Size.Width/2), (menuStrip1.Height));
                     mineLabel.Text = totalMines.ToString();
-                    time.Start();
+                    
+                    //timeLabel.Location = new Point((Width) - (timeLabel.Width), (menuStrip1.Height));
+
+                    //Controls.Add(timeLabel);
+                    //Controls.Add(Face);
                    
->>>>>>> 206a8daac18178407516e47235edb5894cd6af80
                 }
             }
 
