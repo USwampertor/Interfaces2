@@ -200,16 +200,12 @@ namespace MineSweeper
                         CascadaMeValeVergaEstaEnEspanolFuckGringos();
                         gameStarted = true;
                         revealCells(btn);
-                        
-<<<<<<< HEAD
-=======
                     }
                     Face.BackgroundImage = Image.FromFile(@"Happy.png");
                     Face.BackgroundImageLayout = ImageLayout.Stretch;
                     if (flagCount == mineCount && revealedCount == cellCount - mineCount)
                     {
                         wonGame();
->>>>>>> remotes/origin/features6
                     }
                     Face.BackgroundImage = Image.FromFile(@"Happy.png");
                     Face.BackgroundImageLayout = ImageLayout.Stretch;
@@ -227,16 +223,13 @@ namespace MineSweeper
                             flagCount++;
                             if (flagCount == mineCount && revealedCount == cellCount-mineCount)
                             {
-<<<<<<< HEAD
 
                                 Face.BackgroundImage = Image.FromFile(@"Victory.png");
                                 Face.BackgroundImageLayout = ImageLayout.Stretch;
 
                                 MessageBox.Show("Ganaste.");
                                 clearBoard();
-=======
                                 wonGame();
->>>>>>> remotes/origin/features6
                             }
                         }
                     }

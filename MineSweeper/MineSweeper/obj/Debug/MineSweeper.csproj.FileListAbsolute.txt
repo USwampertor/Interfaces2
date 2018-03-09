@@ -1,59 +1,10 @@
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe.config
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Form1.resources
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Options.resources
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.CoreCompileInputs.cache
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
-C:\Users\Usuario\Desktop\Interfaces2-features1\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe.config
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Form1.resources
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Options.resources
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.CoreCompileInputs.cache
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.GridManager.resources
-C:\Users\Usuario\Documents\UAD\5to\Interfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe.config
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Form1.resources
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.GridManager.resources
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Options.resources
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.CoreCompileInputs.cache
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
-C:\Users\Ivan\Documents\5to Cuatri\Iterfaces\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe.config
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Form1.resources
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.GridManager.resources
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Options.resources
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
-C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe.config
-<<<<<<< HEAD
-C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
-C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
-=======
->>>>>>> remotes/origin/Development
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
-C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Form1.resources
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.GridManager.resources
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Options.resources
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
+C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
+C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
