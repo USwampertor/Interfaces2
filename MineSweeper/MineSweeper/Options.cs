@@ -14,7 +14,11 @@ namespace MineSweeper
     {
         public int sWidth, sHeight, sMines;
 
+<<<<<<< HEAD
         int minheight = 10, minwidth = 10, maxheight = 50, maxwidth = 50;
+=======
+
+>>>>>>> remotes/origin/features6
         TextBox tWidth = new TextBox();
         TextBox tHeight = new TextBox();
         TextBox tMines = new TextBox();
@@ -144,6 +148,7 @@ namespace MineSweeper
             Controls.Add(hDown);
             Controls.Add(mDown);
         }
+<<<<<<< HEAD
         private void SetMinMines()
         {
             tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10).ToString();
@@ -154,6 +159,9 @@ namespace MineSweeper
             maxmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
             minmines = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 10);
         }
+=======
+       
+>>>>>>> remotes/origin/features6
         private void mUp_Click(object sender, EventArgs e)
         {
             Mines();
@@ -162,8 +170,14 @@ namespace MineSweeper
             {
                 up = int.Parse(tMines.Text);
                 up++;
+<<<<<<< HEAD
 
                 if (up >= maxmines)
+=======
+                if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2))
+
+                if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text)/2))
+>>>>>>> remotes/origin/features6
                 {
                     up = maxmines;
                 }
@@ -194,7 +208,15 @@ namespace MineSweeper
 
             }
             tWidth.Text = up.ToString();
+<<<<<<< HEAD
             SetMinMines();
+=======
+            tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
+
+
+            tMines.Text = (int.Parse(tWidth.Text)*int.Parse(tHeight.Text)/4).ToString();
+            
+>>>>>>> remotes/origin/features6
         }
         private void hUp_Click(object sender, EventArgs e)
         {
@@ -276,6 +298,12 @@ namespace MineSweeper
 
             }
             tMines.Text = down.ToString();
+<<<<<<< HEAD
+=======
+
+
+            
+>>>>>>> remotes/origin/features6
         }
         private void Options_Load(object sender, EventArgs e)
         {
@@ -289,10 +317,16 @@ namespace MineSweeper
                 tHeight.TextLength == 0 ||
                 tWidth.TextLength == 0 ||
                 tMines.TextLength == 0 ||
+<<<<<<< HEAD
                 int.Parse(tHeight.Text) < minheight ||
                 int.Parse(tWidth.Text) < minwidth ||
                 int.Parse(tMines.Text) < minmines||
                 int.Parse(tMines.Text) > maxmines)
+=======
+                int.Parse(tHeight.Text) < 5 ||
+                int.Parse(tWidth.Text) < 5)// ||
+                //int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+>>>>>>> remotes/origin/features6
                 
 
             {

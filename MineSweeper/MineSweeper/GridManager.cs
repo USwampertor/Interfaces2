@@ -28,6 +28,7 @@ namespace MineSweeper
         int mineCount;
         int mineTotal;
         int flagCount;
+        int revealedCount;
         int columnCount;
         int fileCount;
         int firstCell;
@@ -200,6 +201,15 @@ namespace MineSweeper
                         gameStarted = true;
                         revealCells(btn);
                         
+<<<<<<< HEAD
+=======
+                    }
+                    Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                    Face.BackgroundImageLayout = ImageLayout.Stretch;
+                    if (flagCount == mineCount && revealedCount == cellCount - mineCount)
+                    {
+                        wonGame();
+>>>>>>> remotes/origin/features6
                     }
                     Face.BackgroundImage = Image.FromFile(@"Happy.png");
                     Face.BackgroundImageLayout = ImageLayout.Stretch;
@@ -215,14 +225,18 @@ namespace MineSweeper
                         if (btn.isFlagged && btn.isMine)
                         {
                             flagCount++;
-                            if (flagCount == mineCount)
+                            if (flagCount == mineCount && revealedCount == cellCount-mineCount)
                             {
+<<<<<<< HEAD
 
                                 Face.BackgroundImage = Image.FromFile(@"Victory.png");
                                 Face.BackgroundImageLayout = ImageLayout.Stretch;
 
                                 MessageBox.Show("Ganaste.");
                                 clearBoard();
+=======
+                                wonGame();
+>>>>>>> remotes/origin/features6
                             }
                         }
                     }
@@ -239,6 +253,10 @@ namespace MineSweeper
                             btn.BackgroundImage = null;
                             btn.Text = "?";
                             btn.isFlagged = false;
+                            if (btn.isMine)
+                            {
+                                flagCount--;
+                            }
                         }
                     }
                     break;
@@ -275,7 +293,7 @@ namespace MineSweeper
                 btn.isFlagged = false;
                 btn.isRevealed = true;
             }
-            if(btn.isBlank && !btn.isRevealed)
+            if(btn.isBlank)
             {
                 btn.Text = " ";
                 btn.ForeColor = Color.Purple;
@@ -287,6 +305,7 @@ namespace MineSweeper
                 cascade(btn);
 
             }
+            revealedCount++;
         }
 
         public void clearBoard()
@@ -315,6 +334,7 @@ namespace MineSweeper
             mineCount = 0;
             mineTotal = mines;
             flagCount = 0;
+            revealedCount = 0;
         }
 
         public void CascadaMeValeVergaEstaEnEspanolFuckGringos()
@@ -413,7 +433,7 @@ namespace MineSweeper
                     {
                         if (((btn.id - columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -425,7 +445,7 @@ namespace MineSweeper
                         }
                         if ((btn.id - columnCount) == ((Cell)x).id)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -437,7 +457,7 @@ namespace MineSweeper
                         }
                         if (((btn.id - columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -450,7 +470,7 @@ namespace MineSweeper
                     }
                     if (((btn.id - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                     {
-                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                         {
                             //((Cell)x).Text = " ";
                             //((Cell)x).ForeColor = Color.Purple;
@@ -462,7 +482,7 @@ namespace MineSweeper
                     }
                     if (((btn.id + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                     {
-                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                         {
                             //((Cell)x).Text = " ";
                             //((Cell)x).ForeColor = Color.Purple;
@@ -476,7 +496,7 @@ namespace MineSweeper
                     {
                         if (((btn.id + columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -488,7 +508,7 @@ namespace MineSweeper
                         }
                         if ((btn.id + columnCount) == ((Cell)x).id)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -500,7 +520,7 @@ namespace MineSweeper
                         }
                         if (((btn.id + columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -513,6 +533,15 @@ namespace MineSweeper
                     }
                 }
             }
+        }
+
+        void wonGame()
+        {
+            Face.BackgroundImage = Image.FromFile(@"Victory.png");
+            Face.BackgroundImageLayout = ImageLayout.Stretch;
+
+            MessageBox.Show("Ganaste.");
+            clearBoard();
         }
 
         //public void FirstMove(int x, int y, Random rand)
