@@ -197,7 +197,7 @@ namespace MineSweeper
                 case MouseButtons.Right:
                     if (!btn.isFlagged && !btn.isRevealed)
                     {
-                        btn.BackgroundImage = Image.FromFile(@"flag.png");
+                        btn.BackgroundImage = Image.FromFile(@"NotPushy.png");
                         btn.BackgroundImageLayout = ImageLayout.Stretch;
                         btn.Text = " ";
                         btn.isFlagged = true;
@@ -270,12 +270,11 @@ namespace MineSweeper
                 btn.ForeColor = Color.Purple;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
-<<<<<<< HEAD
                 Face.BackgroundImage = Image.FromFile(@"Happy.png");
                 Face.BackgroundImageLayout = ImageLayout.Stretch;
-=======
+
                 cascade(btn);
->>>>>>> b8ad0034ad93a1346e2a5fd7d6e1570ad6606d87
+
             }
         }
 
