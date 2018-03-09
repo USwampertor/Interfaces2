@@ -15,32 +15,63 @@ namespace MineSweeper
         private Timer time;
         private TimeSpan timeinterval;
         int gameWidth, gameHeight, totalMines;
-        public Label timeLabel;
+        public Label timeLabel, mineLabel;
+        GridManager grid;
+        public bool gameStarted;
 
         public Form1()
         {
             InitializeComponent();
             InitializeDynamicCompontent();
+            gameStarted = false;
         }
         private void InitializeDynamicCompontent()
         {
             ///esto es de mientras
+
+            Face = new Button();
+
+
+            Face.Enabled = false;
+            Face.Size = new Size(41, 39);
+            Face.BackgroundImage = Image.FromFile(@"Happy.png");
+            Face.BackgroundImageLayout = ImageLayout.Stretch;
+            Face.Location = new Point((Width / 2) - (Face.Width / 2), (menuStrip1.Height));
+            Face.AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowOnly;
+           
+
+
             time = new Timer();
             timeLabel = new Label();
+            mineLabel = new Label();
             time.Interval = 100;
             timeinterval = new TimeSpan();
+            timeLabel.Width = TextRenderer.MeasureText("00:00", timeLabel.Font).Width;
+            mineLabel.Width = TextRenderer.MeasureText("0000", mineLabel.Font).Width;
 
+            mineLabel.BackColor = Color.Black;
+            mineLabel.ForeColor = Color.GreenYellow;
             timeLabel.BackColor = Color.Black;
             timeLabel.ForeColor = Color.GreenYellow;
             timeLabel.TextAlign = ContentAlignment.MiddleCenter;
+            mineLabel.TextAlign = ContentAlignment.MiddleCenter;
 
             timeLabel.Location = new Point
-                ((this.Width / 2) - (timeLabel.Width / 2), (menuStrip1.Height + 1));
+                ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
+            mineLabel.Location = new Point
+                (5, (menuStrip1.Height + 1));
 
             time.Tick += new EventHandler(time_Tick);
             this.FormClosing += new FormClosingEventHandler(Closing);
+            this.SizeChanged += new EventHandler(WindowResize);
 
+
+            Controls.Add(mineLabel);
             Controls.Add(timeLabel);
+
+
+            Controls.Add(Face);
         }
 
         void time_Tick(object sender, EventArgs e)
@@ -48,6 +79,22 @@ namespace MineSweeper
             timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
             timeLabel.Text = (timeinterval.Minutes + ":" + timeinterval.Seconds);
         }
+        private void ResizeonNewGame(int width)
+        {
+            Cell a = new Cell();
+            this.Width = (TextRenderer.MeasureText("  ", a.Font).Width) * gameWidth;
+        }
+        private void WindowResize(object sender, EventArgs e)
+        {
+            timeLabel.Location = new Point
+                ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
+            mineLabel.Location = new Point
+                (5, (menuStrip1.Height + 1));
+            
+            Face.Location = new Point((Width / 2) - (Face.Size.Width / 2), (menuStrip1.Height));
+            mineLabel.Text = totalMines.ToString();
+        }
+        
 
         new public void Closing(object sender, FormClosingEventArgs e)
         {
@@ -57,13 +104,15 @@ namespace MineSweeper
                 e.Cancel = true;
             }
 
-
-
         }
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowOptions();
 
+        }
+        public void StopTime()
+        {
+            time.Stop();
         }
         private void ShowOptions()
         {
@@ -77,14 +126,31 @@ namespace MineSweeper
                     gameHeight = gameSize.sHeight;
                     buttonsToButton = gameWidth * gameHeight;
                     totalMines = gameSize.sMines;
+                    timeinterval = new TimeSpan();
                     time.Start();
-                    GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines);
+                   
+                    if (!gameStarted)
+                    {
+                        grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
+                        gameStarted = true;
+                    }
+                    else
+                    {
+                        grid.clearBoard();
+                        grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
+                    }
                     AutoSize = true;
+                    Face.AutoSize = true;
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                    //grid.mineGenerator(this, buttonsToButton);
+                    Face.Location = new Point((Width/2) - (Face.Size.Width/2), (menuStrip1.Height));
+                    mineLabel.Text = totalMines.ToString();
+                    timeLabel.Text="00:00";
+                    
+
+
                 }
             }
-
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -94,6 +160,16 @@ namespace MineSweeper
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("There's no help here Boi", "Ayuda", MessageBoxButtons.OK);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
 
         private void créditosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,5 +183,6 @@ namespace MineSweeper
         {
             Application.Exit();
         }
+        
     }
 }

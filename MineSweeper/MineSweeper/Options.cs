@@ -13,6 +13,8 @@ namespace MineSweeper
     public partial class Options : Form
     {
         public int sWidth, sHeight, sMines;
+
+
         TextBox tWidth = new TextBox();
         TextBox tHeight = new TextBox();
         TextBox tMines = new TextBox();
@@ -115,7 +117,7 @@ namespace MineSweeper
                 (((this.Width / 2) - (EButton.Width / 2)), ((2 * this.Height / 3) - (EButton.Height / 2)));
 
 
-            this.SizeChanged += new EventHandler(WindowResize);
+            
             EButton.Click += new EventHandler(EButton_Click);
             startButton.Click += new EventHandler(OptionsButton_Click);
             wUp.Click += new EventHandler(wUp_Click);
@@ -140,10 +142,7 @@ namespace MineSweeper
             Controls.Add(hDown);
             Controls.Add(mDown);
         }
-        private void WindowResize(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Dont touch that!","HEY!",MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+       
         private void mUp_Click(object sender, EventArgs e)
         {
             int up = (int.Parse(tWidth.Text) * int.Parse(tWidth.Text) / 4);
@@ -152,6 +151,8 @@ namespace MineSweeper
                 up = int.Parse(tMines.Text);
                 up++;
                 if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2))
+
+                if (up >= (int.Parse(tWidth.Text) * int.Parse(tHeight.Text)/2))
                 {
                     up = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 2);
                 }
@@ -185,6 +186,9 @@ namespace MineSweeper
             tWidth.Text = up.ToString();
             tMines.Text = (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4).ToString();
 
+
+            tMines.Text = (int.Parse(tWidth.Text)*int.Parse(tHeight.Text)/4).ToString();
+            
         }
         private void hUp_Click(object sender, EventArgs e)
         {
@@ -266,6 +270,8 @@ namespace MineSweeper
             }
             tMines.Text = down.ToString();
 
+
+            
         }
         private void Options_Load(object sender, EventArgs e)
         {
@@ -279,8 +285,10 @@ namespace MineSweeper
                 tWidth.TextLength == 0 ||
                 tMines.TextLength == 0 ||
                 int.Parse(tHeight.Text) < 5 ||
-                int.Parse(tWidth.Text) < 5 ||
-                int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                int.Parse(tWidth.Text) < 5)// ||
+                //int.Parse(tMines.Text) < (int.Parse(tWidth.Text) * int.Parse(tHeight.Text) / 4))
+                
+
             {
                 MessageBox.Show("Los valores no pueden ser menores a 5 o ser nulos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

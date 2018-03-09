@@ -15,24 +15,30 @@ namespace MineSweeper
     {
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"Explosion.wav");
         Form tableroporquemevalemadreelingles;
+        Button Face;
         bool gameStarted, gameLost, gameWon;
         int ButtonWidth = 25;
         int ButtonHeight = 25;
         int DistanceY = 5;
         int DistanceX = 0;
         int start_x = 0;
-        int start_y = 51;
+        int start_y = 74;
         int mina = 0, id = 0;
         int cellCount;
         int mineCount;
         int mineTotal;
         int flagCount;
+        int revealedCount;
         int columnCount;
         int fileCount;
+        int firstCell;
 
-        public GridManager(int xg, int yg, Form form, int mines)
+        public GridManager(int xg, int yg, Form form, int mines, Button face)
         {
             tableroporquemevalemadreelingles = form;
+            Face = face;
+            //Face.BackgroundImage = Image.FromFile(@"Happy.png");
+            //Face.BackgroundImageLayout = ImageLayout.Stretch;
             resetBoard(mines);
             for (int y = 0; y < yg; y++)
             {                                   //Estos 2 fors controlan el tamaño del grid
@@ -40,11 +46,11 @@ namespace MineSweeper
                 {
                     Cell tmpButton = new Cell();
                     id++;
-
                     tmpButton.AutoSize = true;
                     tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
                     tmpButton.MouseUp += new MouseEventHandler(button1_MouseUp);
+                    tmpButton.MouseDown += new MouseEventHandler(button1_MouseDown);
                     //tmpButton.Click += new EventHandler(button_Left_Click);
                     tmpButton.Text = "?";
                     tmpButton.id = id;
@@ -53,6 +59,8 @@ namespace MineSweeper
                     
                 }
             }
+            Cell defaultsize = new Cell();
+           
             fileCount = yg;
             columnCount = xg;
             cellCount = xg * yg;
@@ -62,26 +70,63 @@ namespace MineSweeper
         public void mineGenerator(int buttons)
         {
             Random rand = new Random();
+
+            List<int> ListaMinas = new List<int>();
+            ListaMinas =  RandomGen();
+
             int esminaalv;
             foreach (Control x in tableroporquemevalemadreelingles.Controls)
             {
-                esminaalv = rand.Next(1, 6) % 2;
+                esminaalv = rand.Next(1, 30) % 2;
                 if (x is Cell)
                 {
-                    //for (int i = 0; i < buttons; i++)
-                    //{
-                    if (mineCount < mineTotal)
+                    for (int i = 0; i < ListaMinas.Count(); i++)
                     {
-                        if (esminaalv == 0)
+                        //if (mineCount < mineTotal)
+                        //{
+                        if (ListaMinas[i] == ((Cell)x).id && ListaMinas[i] != firstCell)
                         {
+                            if (ListaMinas[i] != firstCell)
+                                i++;
+
                             ((Cell)x).isMine = true;
                             mineCount++;
+                            
                         }
-                    }
                     //}
+                    }
                 }
             }
         }
+
+
+        List<int> RandomGen()
+        {
+            List<int> posiblesCeldas = new List<int>();
+
+            for (int i = 0; i < cellCount; i++)
+            {
+                posiblesCeldas.Add(i);
+            }
+
+            List<int> celdasMinadas = new List<int>();
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < mineTotal; i++)
+            {
+                int indice = rnd.Next(posiblesCeldas.Count);
+
+                int value = posiblesCeldas[indice];
+
+                posiblesCeldas.Remove(value);
+                celdasMinadas.Add(value);
+            }
+
+            return celdasMinadas;
+        }
+
+
 
         private int adjMines(int x, int y, int gridX, int gridY)
         {
@@ -112,6 +157,7 @@ namespace MineSweeper
         private void button1_MouseUp(object sender, MouseEventArgs e)
         {
             var btn = ((Cell)sender);
+            firstCell = btn.id;
             switch (e.Button)
             {
                 case MouseButtons.Left:
@@ -132,7 +178,13 @@ namespace MineSweeper
                                     //}
                                 }
                             }
-                            MessageBox.Show("Perdiste alv.");
+
+                            Face.BackgroundImage = Image.FromFile(@"Ded.png");
+                            Face.BackgroundImageLayout = ImageLayout.Stretch;
+                            ((Form1)tableroporquemevalemadreelingles).StopTime();
+                            ((Form1)tableroporquemevalemadreelingles).timeLabel.Text = "00:00";
+
+                            MessageBox.Show("GAME OVER");
                             clearBoard();
                         }
                     }
@@ -148,23 +200,29 @@ namespace MineSweeper
                         CascadaMeValeVergaEstaEnEspanolFuckGringos();
                         gameStarted = true;
                         revealCells(btn);
+                        
+                    }
+                    Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                    Face.BackgroundImageLayout = ImageLayout.Stretch;
+                    if (flagCount == mineCount && revealedCount == cellCount - mineCount)
+                    {
+                        wonGame();
                     }
                     break;
 
                 case MouseButtons.Right:
                     if (!btn.isFlagged && !btn.isRevealed)
                     {
-                        btn.BackgroundImage = Image.FromFile(@"flag.png");
+                        btn.BackgroundImage = Image.FromFile(@"NotPushy.png");
                         btn.BackgroundImageLayout = ImageLayout.Stretch;
                         btn.Text = " ";
                         btn.isFlagged = true;
                         if (btn.isFlagged && btn.isMine)
                         {
                             flagCount++;
-                            if (flagCount == mineCount)
+                            if (flagCount == mineCount && revealedCount == cellCount-mineCount)
                             {
-                                MessageBox.Show("Ganaste.");
-                                clearBoard();
+                                wonGame();
                             }
                         }
                     }
@@ -173,30 +231,45 @@ namespace MineSweeper
                         if (btn.isRevealed)
                         {
                             revealCells(btn);
+                           
+
                         }
                         else
                         {
                             btn.BackgroundImage = null;
                             btn.Text = "?";
                             btn.isFlagged = false;
+                            if (btn.isMine)
+                            {
+                                flagCount--;
+                            }
                         }
                     }
                     break;
             }
         }
 
+        private void button1_MouseDown(object sender, MouseEventArgs e)
+        {
+                    Face.BackgroundImage = Image.FromFile(@"worried.png");
+                    Face.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
         public void revealCells(Cell btn)
         {
             if (btn.isMine && !btn.isRevealed)
             {
-                btn.BackgroundImage = Image.FromFile(@"Mine.png");
+                btn.BackgroundImage = Image.FromFile(@"AtomicMine.png");
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
                 btn.Text = "  ";
                 player.Play();
+
                 //btn.BackColor = Color.Red;
+
                 gameLost = true;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
+
             }
             if(!btn.isBlank && !btn.isMine)
             {
@@ -206,14 +279,19 @@ namespace MineSweeper
                 btn.isFlagged = false;
                 btn.isRevealed = true;
             }
-            if(btn.isBlank && !btn.isRevealed)
+            if(btn.isBlank)
             {
                 btn.Text = " ";
                 btn.ForeColor = Color.Purple;
                 btn.isFlagged = false;
                 btn.isRevealed = true;
+                Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                Face.BackgroundImageLayout = ImageLayout.Stretch;
+
                 cascade(btn);
+
             }
+            revealedCount++;
         }
 
         public void clearBoard()
@@ -229,7 +307,10 @@ namespace MineSweeper
                     }
                 }
             }
+            tableroporquemevalemadreelingles.AutoSize = true;
+            tableroporquemevalemadreelingles.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
+
 
         public void resetBoard(int mines)
         {
@@ -239,6 +320,7 @@ namespace MineSweeper
             mineCount = 0;
             mineTotal = mines;
             flagCount = 0;
+            revealedCount = 0;
         }
 
         public void CascadaMeValeVergaEstaEnEspanolFuckGringos()
@@ -337,7 +419,7 @@ namespace MineSweeper
                     {
                         if (((btn.id - columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -349,7 +431,7 @@ namespace MineSweeper
                         }
                         if ((btn.id - columnCount) == ((Cell)x).id)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -361,7 +443,7 @@ namespace MineSweeper
                         }
                         if (((btn.id - columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -374,7 +456,7 @@ namespace MineSweeper
                     }
                     if (((btn.id - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                     {
-                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                         {
                             //((Cell)x).Text = " ";
                             //((Cell)x).ForeColor = Color.Purple;
@@ -386,7 +468,7 @@ namespace MineSweeper
                     }
                     if (((btn.id + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                     {
-                        if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                        if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                         {
                             //((Cell)x).Text = " ";
                             //((Cell)x).ForeColor = Color.Purple;
@@ -400,7 +482,7 @@ namespace MineSweeper
                     {
                         if (((btn.id + columnCount - 1) == ((Cell)x).id) && (btn.id % columnCount) != 1)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -412,7 +494,7 @@ namespace MineSweeper
                         }
                         if ((btn.id + columnCount) == ((Cell)x).id)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -424,7 +506,7 @@ namespace MineSweeper
                         }
                         if (((btn.id + columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
-                            if (((Cell)x).isBlank && !((Cell)x).isRevealed)
+                            if ((((Cell)x).isBlank && !((Cell)x).isRevealed) || (!((Cell)x).isMine && !((Cell)x).isRevealed))
                             {
                                 //((Cell)x).Text = " ";
                                 //((Cell)x).ForeColor = Color.Purple;
@@ -437,6 +519,15 @@ namespace MineSweeper
                     }
                 }
             }
+        }
+
+        void wonGame()
+        {
+            Face.BackgroundImage = Image.FromFile(@"Victory.png");
+            Face.BackgroundImageLayout = ImageLayout.Stretch;
+
+            MessageBox.Show("Ganaste.");
+            clearBoard();
         }
 
         //public void FirstMove(int x, int y, Random rand)
