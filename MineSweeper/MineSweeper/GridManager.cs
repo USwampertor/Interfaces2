@@ -206,7 +206,7 @@ namespace MineSweeper
                 btn.isFlagged = false;
                 btn.isRevealed = true;
             }
-            if(btn.isBlank)
+            if(btn.isBlank && !btn.isRevealed)
             {
                 btn.Text = " ";
                 btn.ForeColor = Color.Purple;
@@ -339,33 +339,36 @@ namespace MineSweeper
                         {
                             if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if ((btn.id - columnCount) == ((Cell)x).id)
                         {
                             if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if (((btn.id - columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
                             if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                     }
@@ -373,22 +376,24 @@ namespace MineSweeper
                     {
                         if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                         {
-                            ((Cell)x).Text = " ";
-                            ((Cell)x).ForeColor = Color.Purple;
-                            ((Cell)x).isFlagged = false;
-                            ((Cell)x).isRevealed = true;
-                            cascade(((Cell)x));
+                            //((Cell)x).Text = " ";
+                            //((Cell)x).ForeColor = Color.Purple;
+                            //((Cell)x).isFlagged = false;
+                            //((Cell)x).isRevealed = true;
+                            //cascade(((Cell)x));
+                            revealCells(((Cell)x));
                         }
                     }
                     if (((btn.id + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                     {
                         if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                         {
-                            ((Cell)x).Text = " ";
-                            ((Cell)x).ForeColor = Color.Purple;
-                            ((Cell)x).isFlagged = false;
-                            ((Cell)x).isRevealed = true;
-                            cascade(((Cell)x));
+                            //((Cell)x).Text = " ";
+                            //((Cell)x).ForeColor = Color.Purple;
+                            //((Cell)x).isFlagged = false;
+                            //((Cell)x).isRevealed = true;
+                            //cascade(((Cell)x));
+                            revealCells(((Cell)x));
                         }
                     }
                     if ((btn.id + columnCount) <= cellCount)
@@ -397,33 +402,36 @@ namespace MineSweeper
                         {
                             if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if ((btn.id + columnCount) == ((Cell)x).id)
                         {
                             if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                         if (((btn.id + columnCount + 1) == ((Cell)x).id) && (btn.id % columnCount) != 0)
                         {
                             if (((Cell)x).isBlank && !((Cell)x).isRevealed)
                             {
-                                ((Cell)x).Text = " ";
-                                ((Cell)x).ForeColor = Color.Purple;
-                                ((Cell)x).isFlagged = false;
-                                ((Cell)x).isRevealed = true;
-                                cascade(((Cell)x));
+                                //((Cell)x).Text = " ";
+                                //((Cell)x).ForeColor = Color.Purple;
+                                //((Cell)x).isFlagged = false;
+                                //((Cell)x).isRevealed = true;
+                                //cascade(((Cell)x));
+                                revealCells(((Cell)x));
                             }
                         }
                     }
