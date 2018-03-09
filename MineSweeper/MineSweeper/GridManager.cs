@@ -68,26 +68,59 @@ namespace MineSweeper
         public void mineGenerator(int buttons)
         {
             Random rand = new Random();
+
+            List<int> ListaMinas = new List<int>();
+            ListaMinas =  RandomGen();
+
             int esminaalv;
             foreach (Control x in tableroporquemevalemadreelingles.Controls)
             {
-                esminaalv = rand.Next(1, 6) % 2;
+                esminaalv = rand.Next(1, 30) % 2;
                 if (x is Cell)
                 {
-                    //for (int i = 0; i < buttons; i++)
-                    //{
-                    if (mineCount < mineTotal)
+                    for (int i = 0; i < ListaMinas.Count(); i++)
                     {
-                        if (esminaalv == 0)
+                        //if (mineCount < mineTotal)
+                        //{
+                        if (ListaMinas[i] == ((Cell)x).id)
                         {
                             ((Cell)x).isMine = true;
                             mineCount++;
                         }
-                    }
                     //}
+                    }
                 }
             }
         }
+
+
+        List<int> RandomGen()
+        {
+            List<int> posiblesCeldas = new List<int>();
+
+            for (int i = 0; i < cellCount; i++)
+            {
+                posiblesCeldas.Add(i);
+            }
+
+            List<int> celdasMinadas = new List<int>();
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < mineTotal; i++)
+            {
+                int indice = rnd.Next(posiblesCeldas.Count);
+
+                int value = posiblesCeldas[indice];
+
+                posiblesCeldas.Remove(value);
+                celdasMinadas.Add(value);
+            }
+
+            return celdasMinadas;
+        }
+
+
 
         private int adjMines(int x, int y, int gridX, int gridY)
         {
