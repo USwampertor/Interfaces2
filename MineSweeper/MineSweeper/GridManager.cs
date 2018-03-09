@@ -252,7 +252,7 @@ namespace MineSweeper
                         {
                             if((((Cell)y).id - columnCount) > 0)
                             {
-                                if ((((Cell)y).id - columnCount - 1) == ((Cell)x).id)
+                                if (((((Cell)y).id - columnCount - 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 1)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -266,7 +266,7 @@ namespace MineSweeper
                                         ((Cell)y).adjMine++;
                                     }
                                 }
-                                if ((((Cell)y).id - columnCount + 1) == ((Cell)x).id)
+                                if (((((Cell)y).id - columnCount + 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 0)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -274,29 +274,23 @@ namespace MineSweeper
                                     }
                                 }
                             }
-                            if ((((Cell)y).id % columnCount) != 1)
+                            if (((((Cell)y).id - 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 1)
                             {
-                                if ((((Cell)y).id - 1) == ((Cell)x).id)
+                                if (((Cell)x).isMine)
                                 {
-                                    if (((Cell)x).isMine)
-                                    {
-                                        ((Cell)y).adjMine++;
-                                    }
+                                    ((Cell)y).adjMine++;
                                 }
                             }
-                            if ((((Cell)y).id % columnCount) != 0)
+                            if (((((Cell)y).id + 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 0)
                             {
-                                if (((((Cell)y).id + 1) == ((Cell)x).id))
+                                if (((Cell)x).isMine)
                                 {
-                                    if (((Cell)x).isMine)
-                                    {
-                                        ((Cell)y).adjMine++;
-                                    }
+                                    ((Cell)y).adjMine++;
                                 }
                             }
                             if((((Cell)y).id + columnCount)<=cellCount)
                             {
-                                if ((((Cell)y).id + columnCount - 1) == ((Cell)x).id)
+                                if (((((Cell)y).id + columnCount - 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 1)
                                 {
                                     if (((Cell)x).isMine)
                                     {
@@ -310,7 +304,7 @@ namespace MineSweeper
                                         ((Cell)y).adjMine++;
                                     }
                                 }
-                                if ((((Cell)y).id + columnCount + 1) == ((Cell)x).id)
+                                if (((((Cell)y).id + columnCount + 1) == ((Cell)x).id) && (((Cell)y).id % columnCount) != 0)
                                 {
                                     if (((Cell)x).isMine)
                                     {
