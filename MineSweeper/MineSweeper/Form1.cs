@@ -16,12 +16,14 @@ namespace MineSweeper
         private TimeSpan timeinterval;
         int gameWidth, gameHeight, totalMines;
         public Label timeLabel, mineLabel;
+        GridManager grid;
+        public bool gameStarted;
 
         public Form1()
         {
             InitializeComponent();
             InitializeDynamicCompontent();
-            
+            gameStarted = false;
         }
         private void InitializeDynamicCompontent()
         {
@@ -77,13 +79,18 @@ namespace MineSweeper
             timeinterval = timeinterval.Add(TimeSpan.FromMilliseconds(100));
             timeLabel.Text = (timeinterval.Minutes + ":" + timeinterval.Seconds);
         }
+        private void ResizeonNewGame(int width)
+        {
+            Cell a = new Cell();
+            this.Width = (TextRenderer.MeasureText("  ", a.Font).Width) * gameWidth;
+        }
         private void WindowResize(object sender, EventArgs e)
         {
             timeLabel.Location = new Point
                 ((this.Width - timeLabel.Size.Width - 20), (menuStrip1.Height + 1));
             mineLabel.Location = new Point
                 (5, (menuStrip1.Height + 1));
-
+            
             Face.Location = new Point((Width / 2) - (Face.Size.Width / 2), (menuStrip1.Height));
             mineLabel.Text = totalMines.ToString();
         }
@@ -103,6 +110,10 @@ namespace MineSweeper
             ShowOptions();
 
         }
+        public void StopTime()
+        {
+            time.Stop();
+        }
         private void ShowOptions()
         {
             using (Options gameSize = new Options())
@@ -115,23 +126,31 @@ namespace MineSweeper
                     gameHeight = gameSize.sHeight;
                     buttonsToButton = gameWidth * gameHeight;
                     totalMines = gameSize.sMines;
+                    timeinterval = new TimeSpan();
                     time.Start();
-                    GridManager grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
+                   
+                    if (!gameStarted)
+                    {
+                        grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
+                        gameStarted = true;
+                    }
+                    else
+                    {
+                        grid.clearBoard();
+                        grid = new GridManager(gameWidth, gameHeight, this, totalMines, Face);
+                    }
                     AutoSize = true;
-
                     Face.AutoSize = true;
                     AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     Face.Location = new Point((Width/2) - (Face.Size.Width/2), (menuStrip1.Height));
                     mineLabel.Text = totalMines.ToString();
+                    timeLabel.Text="00:00";
                     
-                    //timeLabel.Location = new Point((Width) - (timeLabel.Width), (menuStrip1.Height));
 
-                    //Controls.Add(timeLabel);
-                    //Controls.Add(Face);
-                   
+
                 }
             }
-
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -164,5 +183,6 @@ namespace MineSweeper
         {
             Application.Exit();
         }
+        
     }
 }

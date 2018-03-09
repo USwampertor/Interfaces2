@@ -44,8 +44,11 @@ C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineS
 C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
 C:\Users\Alumno14\Desktop\UI\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe.config
+<<<<<<< HEAD
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
+=======
+>>>>>>> remotes/origin/Development
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
 C:\Users\PROPIETARIO\Documents\5to Cuatri\Interfaces Actividades\Interfaces2\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache

@@ -35,7 +35,6 @@ namespace MineSweeper
         public GridManager(int xg, int yg, Form form, int mines, Button face)
         {
             tableroporquemevalemadreelingles = form;
-
             Face = face;
             //Face.BackgroundImage = Image.FromFile(@"Happy.png");
             //Face.BackgroundImageLayout = ImageLayout.Stretch;
@@ -46,7 +45,6 @@ namespace MineSweeper
                 {
                     Cell tmpButton = new Cell();
                     id++;
-
                     tmpButton.AutoSize = true;
                     tmpButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                     tmpButton.Location = new Point(start_x + (x * ButtonWidth + DistanceX), start_y + (y * ButtonHeight + DistanceY));
@@ -60,6 +58,8 @@ namespace MineSweeper
                     
                 }
             }
+            Cell defaultsize = new Cell();
+           
             fileCount = yg;
             columnCount = xg;
             cellCount = xg * yg;
@@ -180,8 +180,10 @@ namespace MineSweeper
 
                             Face.BackgroundImage = Image.FromFile(@"Ded.png");
                             Face.BackgroundImageLayout = ImageLayout.Stretch;
+                            ((Form1)tableroporquemevalemadreelingles).StopTime();
+                            ((Form1)tableroporquemevalemadreelingles).timeLabel.Text = "00:00";
 
-                            MessageBox.Show("Perdiste alv.");
+                            MessageBox.Show("GAME OVER");
                             clearBoard();
                         }
                     }
@@ -197,7 +199,10 @@ namespace MineSweeper
                         CascadaMeValeVergaEstaEnEspanolFuckGringos();
                         gameStarted = true;
                         revealCells(btn);
+                        
                     }
+                    Face.BackgroundImage = Image.FromFile(@"Happy.png");
+                    Face.BackgroundImageLayout = ImageLayout.Stretch;
                     break;
 
                 case MouseButtons.Right:
@@ -297,6 +302,8 @@ namespace MineSweeper
                     }
                 }
             }
+            tableroporquemevalemadreelingles.AutoSize = true;
+            tableroporquemevalemadreelingles.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
 
