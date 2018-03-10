@@ -25,6 +25,7 @@ namespace MineSweeper
             if (File.Exists(FullPath))
             {
                 InputStream = new StreamReader(FullPath);
+
                 size =  int.Parse(InputStream.ReadLine());
                 
                 for (int DataIndex = 0; DataIndex < size; ++DataIndex)
